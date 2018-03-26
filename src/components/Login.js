@@ -43,7 +43,7 @@ export default class Login extends React.Component {
         <Text style={{ fontSize: 40, marginBottom: 30 }}>Temploy</Text>
         { mode === "Signup" &&
         <View style={{ flexDirection: "row" }}>
-          <Button
+          <Button style={{backgroundColor: "gray" }}
             label= "Back"
             onPress={this.changeMode}
           />
@@ -118,5 +118,6 @@ const styles = StyleSheet.create({
   inputField: {
     height: 50,
     width: 200,
+    fontSize: 18,
   }
 });
