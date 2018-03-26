@@ -6,9 +6,13 @@ import { request } from "../api";
 
 export default class Login extends React.Component {
   state = {
-    username: "",
-    password: "",
-    email: "",
+    username: '',
+		email: '',
+		password: '',
+		repErr: '',
+		repeat: '',
+		firstName: '',
+    lastName: '',
     mode: "Login"
   };
   onChange = (val, name) => {
@@ -31,6 +35,16 @@ export default class Login extends React.Component {
     const { mode } = this.state;
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ fontSize: 30 }}>Welcome To</Text>
+        <Text style={{ fontSize: 40, marginBottom: 30 }}>Temploy</Text>
+        { mode === "Signup" &&
+        <View style={{ flexDirection: "row" }}>
+          <Button
+            label= "Back"
+            onPress={this.changeMode}
+          />
+        </View>
+        }
         <Input
           name="username"
           placeholder="username"
@@ -50,16 +64,26 @@ export default class Login extends React.Component {
           secureTextEntry
           style={styles.inputField}
         />
+        { mode === "Login" &&
         <View style={{ flexDirection: "row" }}>
           <Button
-            label={mode === "Login" ? "Login" : "Signup"}
+            label= "Login"
             onPress={this.onSubmit}
           />
           <Button
-            label={mode === "Login" ? "Signup" : "Login"}
+            label= "Signup"
             onPress={this.changeMode}
           />
         </View>
+        }
+        { mode === "Signup" &&
+        <View style={{ flexDirection: "row" }}>
+          <Button
+            label= "Signup"
+            onPress={this.onSubmit}
+          />
+        </View>
+        }
       </View>
     );
   }
@@ -68,6 +92,6 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
   inputField: {
     height: 50,
-    width: 100
+    width: 200,
   }
 });
