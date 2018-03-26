@@ -6,15 +6,20 @@ import { request } from "../api";
 
 export default class Login extends React.Component {
   state = {
-    username: '',
-		email: '',
-		password: '',
-		repErr: '',
-		repeat: '',
-		firstName: '',
-    lastName: '',
+    username: "",
+    email: "",
+    password: "",
+    repErr: "",
+    repeat: "",
+    firstName: "",
+    lastName: "",
     mode: "Login"
   };
+  async componentWillMount() {
+    if ((await request.getToken()) !== null) {
+      this.props.navigation.navigate("App");
+    }
+  }
   onChange = (val, name) => {
     this.setState({ [name]: val });
   };
@@ -38,17 +43,14 @@ export default class Login extends React.Component {
     const { mode } = this.state;
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        { mode === "Login" && <Text style={{ fontSize: 30 }}>Welcome To</Text> }
-        { mode === "Signup" && <Text style={{ fontSize: 30 }}>Signup For</Text> }
+        {mode === "Login" && <Text style={{ fontSize: 30 }}>Welcome To</Text>}
+        {mode === "Signup" && <Text style={{ fontSize: 30 }}>Signup For</Text>}
         <Text style={{ fontSize: 40, marginBottom: 30 }}>Temploy</Text>
-        { mode === "Signup" &&
-        <View style={{ flexDirection: "row" }}>
-          <Button
-            label= "Back"
-            onPress={this.changeMode}
-          />
-        </View>
-        }
+        {mode === "Signup" && (
+          <View style={{ flexDirection: "row" }}>
+            <Button label="Back" onPress={this.changeMode} />
+          </View>
+        )}
         <Input
           name="username"
           placeholder="username"
@@ -62,53 +64,44 @@ export default class Login extends React.Component {
           secureTextEntry
           style={styles.inputField}
         />
-        { mode === "Signup" &&
-        <View style={{ flexDirection: "column" }}>
-          <Input
-            name="repeat"
-            placeholder="repeat password"
-            onChangeText={this.onChange}
-            secureTextEntry
-            style={styles.inputField}
-          />
-          <Input
-            name="email"
-            placeholder="email"
-            onChangeText={this.onChange}
-            style={styles.inputField}
-          />
-          <Input
-            name="firstName"
-            placeholder="first name"
-            onChangeText={this.onChange}
-            style={styles.inputField}
-          />
-          <Input
-            name="lastName"
-            placeholder="last name"
-            onChangeText={this.onChange}
-            style={styles.inputField}
-          />
-          <View style={{ alignItems: "center"}}>
-            <Button
-              label= "Signup"
-              onPress={this.onSubmit}
+        {mode === "Signup" && (
+          <View style={{ flexDirection: "column" }}>
+            <Input
+              name="repeat"
+              placeholder="repeat password"
+              onChangeText={this.onChange}
+              secureTextEntry
+              style={styles.inputField}
             />
+            <Input
+              name="email"
+              placeholder="email"
+              onChangeText={this.onChange}
+              style={styles.inputField}
+            />
+            <Input
+              name="firstName"
+              placeholder="first name"
+              onChangeText={this.onChange}
+              style={styles.inputField}
+            />
+            <Input
+              name="lastName"
+              placeholder="last name"
+              onChangeText={this.onChange}
+              style={styles.inputField}
+            />
+            <View style={{ alignItems: "center" }}>
+              <Button label="Signup" onPress={this.onSubmit} />
             </View>
-        </View>
-        }
-        { mode === "Login" &&
-        <View style={{ flexDirection: "row" }}>
-          <Button
-            label= "Login"
-            onPress={this.onSubmit}
-          />
-          <Button
-            label= "Signup"
-            onPress={this.changeMode}
-          />
-        </View>
-        }
+          </View>
+        )}
+        {mode === "Login" && (
+          <View style={{ flexDirection: "row" }}>
+            <Button label="Login" onPress={this.onSubmit} />
+            <Button label="Signup" onPress={this.changeMode} />
+          </View>
+        )}
       </View>
     );
   }
@@ -117,6 +110,6 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
   inputField: {
     height: 50,
-    width: 200,
+    width: 200
   }
 });
