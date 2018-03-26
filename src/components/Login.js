@@ -23,12 +23,15 @@ export default class Login extends React.Component {
       mode: state.mode === "Login" ? "Signup" : "Login"
     }));
   };
-  onSubmit = () => {
+  onSubmit = async () => {
     const { username, password, email, mode } = this.state;
-    if (mode === "Login") {
-      request.login({ body: { username, password } });
-    } else {
-      request.singup({ body: { username, password, email } });
+    if (
+      mode === "Login" &&
+      (await request.login({ body: { username, password } }))
+    ) {
+      this.props.navigation.navigate("App");
+    } else if (await request.singup({ body: { username, password, email } })) {
+      this.props.navigation.navigate("App");
     }
   };
   render() {

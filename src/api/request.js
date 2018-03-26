@@ -26,7 +26,12 @@ class Request {
       { ...options, method: "post" },
       false
     );
-    AsyncStorage.setItem("token", token);
+    if (token) {
+      AsyncStorage.setItem("token", token);
+      return true;
+    } else {
+      return false;
+    }
   };
   singup = async options => {
     const { token } = await this._request(
@@ -34,7 +39,12 @@ class Request {
       { ...options, method: "post" },
       false
     );
-    AsyncStorage.setItem("token", token);
+    if (token) {
+      AsyncStorage.setItem("token", token);
+      return true;
+    } else {
+      return false;
+    }
   };
   logout = () => AsyncStorage.removeItem("token");
   get = (route, options) => this._request(route, { ...options, method: "get" });
