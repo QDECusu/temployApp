@@ -28,14 +28,15 @@ export default class Login extends React.Component {
     if (mode === "Login") {
       request.login({ body: { username, password } });
     } else {
-      request.singup({ body: { username, password, email } });
+      request.singup({ body: { username, email, password } });
     }
   };
   render() {
     const { mode } = this.state;
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ fontSize: 30 }}>Welcome To</Text>
+        { mode === "Login" && <Text style={{ fontSize: 30 }}>Welcome To</Text> }
+        { mode === "Signup" && <Text style={{ fontSize: 30 }}>Signup For</Text> }
         <Text style={{ fontSize: 40, marginBottom: 30 }}>Temploy</Text>
         { mode === "Signup" &&
         <View style={{ flexDirection: "row" }}>
@@ -52,18 +53,47 @@ export default class Login extends React.Component {
           style={styles.inputField}
         />
         <Input
-          name="email"
-          placeholder="email"
-          onChangeText={this.onChange}
-          style={styles.inputField}
-        />
-        <Input
           name="password"
           placeholder="password"
           onChangeText={this.onChange}
           secureTextEntry
           style={styles.inputField}
         />
+        { mode === "Signup" &&
+        <View style={{ flexDirection: "column" }}>
+          <Input
+            name="repeat"
+            placeholder="repeat password"
+            onChangeText={this.onChange}
+            secureTextEntry
+            style={styles.inputField}
+          />
+          <Input
+            name="email"
+            placeholder="email"
+            onChangeText={this.onChange}
+            style={styles.inputField}
+          />
+          <Input
+            name="firstName"
+            placeholder="first name"
+            onChangeText={this.onChange}
+            style={styles.inputField}
+          />
+          <Input
+            name="lastName"
+            placeholder="last name"
+            onChangeText={this.onChange}
+            style={styles.inputField}
+          />
+          <View style={{ alignItems: "center"}}>
+            <Button
+              label= "Signup"
+              onPress={this.onSubmit}
+            />
+            </View>
+        </View>
+        }
         { mode === "Login" &&
         <View style={{ flexDirection: "row" }}>
           <Button
@@ -73,14 +103,6 @@ export default class Login extends React.Component {
           <Button
             label= "Signup"
             onPress={this.changeMode}
-          />
-        </View>
-        }
-        { mode === "Signup" &&
-        <View style={{ flexDirection: "row" }}>
-          <Button
-            label= "Signup"
-            onPress={this.onSubmit}
           />
         </View>
         }
