@@ -36,13 +36,19 @@ export default TabNavigator(
           <MaterialIcons
             name={iconName}
             size={25}
-            color={focused ? colors.primary : colors.primaryLight}
+            color={focused ? "white" : colors.primaryLight}
           />
         );
       }
     }),
     tabBarOptions: {
-      inactiveTintColor: "gray"
+      inactiveTintColor: "gray",
+      activeTintColor: "white",
+      showIcon: true,
+      showLabel: false,
+      style: {
+        backgroundColor: colors.primaryDeep,
+      }
     },
     tabBarPosition: "bottom",
     animationEnabled: false,
