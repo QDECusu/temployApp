@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, KeyboardAvoidingView, Keyboard } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Input, Button } from "./utils";
-
+import colors from "./utils/colors";
 import { request } from "../api";
 
 export default class Login extends React.Component {
@@ -42,18 +43,28 @@ export default class Login extends React.Component {
   render() {
     const { mode } = this.state;
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        {mode === "Login" && <Text style={{ fontSize: 30 }}>Welcome To</Text>}
-        {mode === "Signup" && <Text style={{ fontSize: 30 }}>Signup For</Text>}
-        <Text style={{ fontSize: 40, marginBottom: 30 }}>Temploy</Text>
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: colors.primaryDeep }}>
         { mode === "Signup" &&
-        <View style={{ flexDirection: "row" }}>
-          <Button style={{backgroundColor: "gray" }}
-            label= "Back"
+        <View style={{ flexDirection: "row", paddingRight: 200 }}>
+          <Button style={{backgroundColor: colors.primaryDeep, height: 25 }}
+            label= "<-Back"
             onPress={this.changeMode}
           />
         </View>
         }
+        <View style={{
+          backgroundColor: "white",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: 20,
+          borderRadius: 10,
+          borderColor: "black",
+          borderStyle: "solid",
+          borderWidth: 3,
+        }}>
+        {mode === "Login" && <Text style={{ fontSize: 30 }}>Welcome To</Text>}
+        {mode === "Signup" && <Text style={{ fontSize: 30 }}>Signup For</Text>}
+        <Text style={{ fontSize: 40, fontWeight: 'bold', color: colors.primaryDeep, marginBottom: 30 }}>Temploy</Text>
         <Input
           name="username"
           placeholder="username"
@@ -79,6 +90,7 @@ export default class Login extends React.Component {
             <Input
               name="email"
               placeholder="email"
+              keyboardType={'email-address'}
               onChangeText={this.onChange}
               style={styles.inputField}
             />
@@ -105,7 +117,8 @@ export default class Login extends React.Component {
             <Button label="Signup" onPress={this.changeMode} />
           </View>
         )}
-      </View>
+        </View>
+      </KeyboardAvoidingView>
     );
   }
 }
