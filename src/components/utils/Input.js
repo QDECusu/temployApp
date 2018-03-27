@@ -1,5 +1,6 @@
 import React from "react";
 import { TextInput, StyleSheet } from "react-native";
+import colors from "./colors"
 
 export default class Input extends React.PureComponent {
   onChangeText = text => {
@@ -7,6 +8,11 @@ export default class Input extends React.PureComponent {
   };
   render() {
     const { onChangeText, ...rest } = this.props;
-    return <TextInput onChangeText={this.onChangeText} {...rest} />;
+    return <TextInput 
+            underlineColorAndroid={colors.primary}
+            selectionColor={"rgba(63,81,181,.65)"}
+            onChangeText={this.onChangeText}
+            {...rest}
+          />;
   }
 }
