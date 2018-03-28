@@ -1,20 +1,32 @@
 import React from "react";
-import { TabNavigator } from "react-navigation";
+import { TabNavigator, StackNavigator } from "react-navigation";
 import { MaterialIcons } from "@expo/vector-icons";
 import { View, Text } from "react-native";
 import { colors } from "./utils";
 
-const Home = () => (
+const Basic = () => (
   <View>
     <Text>basic screen</Text>
   </View>
 );
 
+const Profile = StackNavigator({
+  Profile: { screen: Basic, navigationOptions: { title: "Profile" } }
+});
+
+const Search = StackNavigator({
+  Search: { screen: Basic, navigationOptions: { title: "Search" } }
+});
+
+const Home = StackNavigator({
+  Home: { screen: Basic, navigationOptions: { title: "Home" } }
+});
+
 export default TabNavigator(
   {
-    Home: { screen: Home, navigationOptions: { title: "Home" } },
-    Search: { screen: Home, navigationOptions: { title: "Search" } },
-    Profile: { screen: Home, navigationOptions: { title: "Profile" } }
+    Home,
+    Search,
+    Profile
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -36,18 +48,16 @@ export default TabNavigator(
           <MaterialIcons
             name={iconName}
             size={25}
-            color={focused ? "white" : colors.primaryLight}
+            color={focused ? "white" : colors.disabled}
           />
         );
       }
     }),
     tabBarOptions: {
-      inactiveTintColor: "gray",
-      activeTintColor: "white",
       showIcon: true,
       showLabel: false,
       style: {
-        backgroundColor: colors.primaryDeep,
+        backgroundColor: colors.primaryDeep
       }
     },
     tabBarPosition: "bottom",

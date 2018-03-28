@@ -4,5 +4,6 @@ export default {
   primaryLight: "#c5cae9",
   secondary: "#ff4081",
   secondaryDeep: "#f50057",
-  secondaryLight: "#ff80ab"
+  secondaryLight: "#ff80ab",
+  disabled: "#9E9E9E"
 };
