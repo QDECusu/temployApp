@@ -1,5 +1,5 @@
 import { AsyncStorage } from "react-native";
-const BASE_URL = "http://144.39.160.212:8000";
+import BASE_URL from "./url";
 
 class Request {
   getToken = () => AsyncStorage.getItem("token");

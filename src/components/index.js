@@ -4,6 +4,6 @@ import Login from "./Login";
 import App from "./appScreens";
 
 export default SwitchNavigator({
-  //Authentication: Login,
+  Authentication: Login,
   App: App
 });

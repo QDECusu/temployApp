@@ -5,7 +5,6 @@ import { View, Text } from "react-native";
 import { colors } from "./utils";
 import { SearchScreen, ProfileScreen, HomeScreen } from "./screens";
 
-
 const Profile = StackNavigator({
   Profile: { screen: ProfileScreen, navigationOptions: { title: "Profile" } }
 });

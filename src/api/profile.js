@@ -1,8 +1,7 @@
 import request from "./request";
 
 class Profile {
-  getProfile = () => {
-    const profile = request.get("profileDetail");
-    console.log(profile);
-  };
+  getProfile = () => request.get("profileDetail");
 }
+
+export default new Profile();
