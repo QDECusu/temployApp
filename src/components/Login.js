@@ -6,11 +6,14 @@ import {
   KeyboardAvoidingView,
   Keyboard
 } from "react-native";
+import { connect } from "react-redux";
 import { Input, Button } from "./utils";
 import colors from "./utils/colors";
 import { request } from "../api";
+import { getProfileDetails } from "../actions/profile";
 
-export default class Login extends React.Component {
+@connect(null, { getProfileDetails })
+class Login extends React.Component {
   state = {
     username: "",
     email: "",
@@ -22,10 +25,14 @@ export default class Login extends React.Component {
     mode: "Login"
   };
   async componentWillMount() {
+    this.gotoApp();
+  }
+  gotoApp = async () => {
     if ((await request.getToken()) !== null) {
       this.props.navigation.navigate("App");
+      this.props.getProfileDetails();
     }
-  }
+  };
   onChange = (val, name) => {
     this.setState({ [name]: val });
   };
@@ -40,9 +47,9 @@ export default class Login extends React.Component {
       mode === "Login" &&
       (await request.login({ body: { username, password } }))
     ) {
-      this.props.navigation.navigate("App");
+      this.gotoApp();
     } else if (await request.singup({ body: { username, password, email } })) {
-      this.props.navigation.navigate("App");
+      this.gotoApp();
     }
   };
   render() {
@@ -157,3 +164,5 @@ const styles = StyleSheet.create({
     fontSize: 18
   }
 });
+
+export default Login;
