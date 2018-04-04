@@ -14,7 +14,6 @@ class Request {
       const optionsWithAuth = { ...options, headers, body };
       const blob = await fetch(`${BASE_URL}/${route}/`, optionsWithAuth);
       const response = await blob.json();
-      console.log(response);
       return response;
     } catch (e) {
       console.warn(e);

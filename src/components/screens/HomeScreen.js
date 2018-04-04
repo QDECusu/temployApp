@@ -10,11 +10,17 @@ import { Input, Button, colors } from "../utils";
 import { request } from "../../api";
 
 export default class HomeScreen extends React.Component {
-    render() { 
-        return (
-            <View>
-                <Text>Home screen</Text>
-            </View>
-        );
-    }
+  postJob = () => {
+    this.props.navigation.navigate("JobPost");
+  };
+  render() {
+    return (
+      <View>
+        <Button onPress={this.postJob}>
+          <Text>Post a job</Text>
+        </Button>
+        <Text>Home screen</Text>
+      </View>
+    );
+  }
 }

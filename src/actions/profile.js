@@ -1,7 +1,10 @@
-import { actionNames } from "./actionNames";
-import { profile } from "../api";
+import * as types from "./actionNames";
+import profileRequest from "../api/profile";
 
-export const getProfileDetails = () => async () => {
-  const data = await profile.getProfile();
-  console.log(data);
+export const getProfileDetails = () => async dispatch => {
+  const profile = await profileRequest.getProfile();
+  dispatch({
+    type: types.GET_PROFILE_DETAILS,
+    payload: { profile }
+  });
 };
