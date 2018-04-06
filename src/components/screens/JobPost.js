@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text } from "react-native";
-import { Button } from "native-base";
+import { View, Text, KeyboardAvoidingView, Keyboard } from "react-native";
+import { Input, Button, colors } from "../utils";
 import NamedTextField from "../NamedTextField";
 import { jobs as jobRequests } from "../../api";
 import { getJobs } from "../../actions/jobs";
@@ -41,7 +41,13 @@ class JobPost extends Component {
   };
   render() {
     return (
-      <View>
+      <KeyboardAvoidingView
+        behavior="padding"
+        style={{
+          flex: 1,
+          alignItems: "center",
+        }}
+      >
         <NamedTextField
           name="company_name"
           onChange={this.onChange}
@@ -78,10 +84,9 @@ class JobPost extends Component {
           value={this.state.job_schedule}
           placeholder="job schedule"
         />
-        <Button onPress={this.submit}>
-          <Text>Submit</Text>
+        <Button label="Submit" onPress={this.submit}>
         </Button>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

@@ -13,7 +13,7 @@ export default class SearchScreen extends React.Component {
     render() { 
         return (
             <View>
-                <Text> NEW Search screen</Text>
+                <Text> Search screen</Text>
             </View>
         );
     }

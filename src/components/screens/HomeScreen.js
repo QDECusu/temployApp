@@ -28,10 +28,8 @@ class HomeScreen extends React.Component {
     const { jobs } = this.props;
     return (
       <View>
-        <Button onPress={this.postJob}>
-          <Text>Post a job</Text>
+        <Button label="Post A Job" onPress={this.postJob}>    
         </Button>
-        <Text>Home screen</Text>
         {this.props.myJobs.map(jp => (
           <JobPosting
             companyName={jp.company_name}
