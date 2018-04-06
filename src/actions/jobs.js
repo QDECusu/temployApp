@@ -1,7 +1,12 @@
 import * as types from "./actionNames";
-import { jobs as jobReqest } from "../api";
+import { jobs as jobRequest } from "../api";
 
 export const getJobs = () => async dispatch => {
-  const jobs = await jobReqest.getPosts();
-  return { type: types.GET_JOBS, payload: { jobs } };
+  const jobs = await jobRequest.getPosts();
+  dispatch({ type: types.GET_JOBS, payload: { jobs } });
+};
+
+export const getMyJobs = () => async dispatch => {
+  const jobs = await jobRequest.getMyPosts();
+  dispatch({ type: types.GET_MY_JOBS, payload: { jobs } });
 };

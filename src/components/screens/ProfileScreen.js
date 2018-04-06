@@ -14,7 +14,6 @@ class Profile extends Component {
   };
   render() {
     const { profile } = this.props;
-    console.log(profile);
     return (
       <View style={{ flex: 1 }}>
         <Text style={style}>{profile.username}</Text>

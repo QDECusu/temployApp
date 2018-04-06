@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { View, Text } from "react-native";
 import { Button } from "native-base";
 import NamedTextField from "../NamedTextField";
 import { jobs as jobRequests } from "../../api";
+import { getJobs } from "../../actions/jobs";
 
-export default class JobPost extends Component {
+@connect(null, { getJobs })
+class JobPost extends Component {
   state = {
     company_name: "",
     job_position: "",
@@ -33,6 +36,7 @@ export default class JobPost extends Component {
       job_position,
       job_schedule
     });
+    this.props.getJobs();
     this.props.navigation.goBack();
   };
   render() {
@@ -81,3 +85,5 @@ export default class JobPost extends Component {
     );
   }
 }
+
+export default JobPost;
