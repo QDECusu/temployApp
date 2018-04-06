@@ -1,7 +1,7 @@
 import request from "./request";
 
 class Jobs {
-  postJob = async ({
+  postJob = ({
     company_name,
     job_position,
     job_phone,

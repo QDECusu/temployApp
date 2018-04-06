@@ -29,8 +29,8 @@ class Login extends React.Component {
   }
   gotoApp = async () => {
     if ((await request.getToken()) !== null) {
-      this.props.navigation.navigate("App");
       this.props.getProfileDetails();
+      this.props.navigation.navigate("App");
     }
   };
   onChange = (val, name) => {
@@ -42,13 +42,23 @@ class Login extends React.Component {
     }));
   };
   onSubmit = async () => {
-    const { username, password, email, mode } = this.state;
+    const { username, password, email, mode, firstName, lastName } = this.state;
     if (
       mode === "Login" &&
       (await request.login({ body: { username, password } }))
     ) {
       this.gotoApp();
-    } else if (await request.singup({ body: { username, password, email } })) {
+    } else if (
+      await request.singup({
+        body: {
+          username,
+          password,
+          email,
+          first_name: firstName,
+          last_name: lastName
+        }
+      })
+    ) {
       this.gotoApp();
     }
   };

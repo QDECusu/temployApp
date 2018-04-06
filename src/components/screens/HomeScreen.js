@@ -12,14 +12,14 @@ import { Input, Button, colors } from "../utils";
 import { request } from "../../api";
 import JobPosting from "../JobPosting";
 
-const mapStateToProps = ({ jobs, myJobs }) => ({ jobs, myJobs });
+const mapStateToProps = ({ jobs }) => ({ jobs });
 
-const mapDispatchToProps = { getJobs, getMyJobs };
+const mapDispatchToProps = { getJobs };
 
 @connect(mapStateToProps, mapDispatchToProps)
 class HomeScreen extends React.Component {
   componentWillMount() {
-    this.props.getMyJobs();
+    this.props.getJobs();
   }
   postJob = () => {
     this.props.navigation.navigate("JobPost");
@@ -28,18 +28,9 @@ class HomeScreen extends React.Component {
     const { jobs } = this.props;
     return (
       <View>
-        <Button label="Post A Job" onPress={this.postJob}>    
-        </Button>
-        {this.props.myJobs.map(jp => (
-          <JobPosting
-            companyName={jp.company_name}
-            jobPosition={jp.job_position}
-            jobPhone={jp.job_phone}
-            jobEmail={jp.job_email}
-            jobDescription={jp.job_description}
-            jobSchedule={jp.job_schedule}
-          />
-        ))}
+        <Button label="Post A Job" onPress={this.postJob} />
+        <Text>Home screen</Text>
+        {jobs.map(jp => <JobPosting key={jp.id} jobPosting={jp} />)}
       </View>
     );
   }

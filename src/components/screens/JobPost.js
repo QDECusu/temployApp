@@ -4,9 +4,7 @@ import { View, Text, KeyboardAvoidingView, Keyboard } from "react-native";
 import { Input, Button, colors } from "../utils";
 import NamedTextField from "../NamedTextField";
 import { jobs as jobRequests } from "../../api";
-import { getJobs } from "../../actions/jobs";
 
-@connect(null, { getJobs })
 class JobPost extends Component {
   state = {
     company_name: "",
@@ -36,7 +34,6 @@ class JobPost extends Component {
       job_position,
       job_schedule
     });
-    this.props.getJobs();
     this.props.navigation.goBack();
   };
   render() {
@@ -45,7 +42,7 @@ class JobPost extends Component {
         behavior="padding"
         style={{
           flex: 1,
-          alignItems: "center",
+          alignItems: "center"
         }}
       >
         <NamedTextField
@@ -84,8 +81,7 @@ class JobPost extends Component {
           value={this.state.job_schedule}
           placeholder="job schedule"
         />
-        <Button label="Submit" onPress={this.submit}>
-        </Button>
+        <Button label="Submit" onPress={this.submit} />
       </KeyboardAvoidingView>
     );
   }

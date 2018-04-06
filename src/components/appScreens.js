@@ -3,7 +3,13 @@ import { TabNavigator, StackNavigator } from "react-navigation";
 import { MaterialIcons } from "@expo/vector-icons";
 import { View, Text } from "react-native";
 import { colors } from "./utils";
-import { SearchScreen, ProfileScreen, HomeScreen, JobPost } from "./screens";
+import {
+  SearchScreen,
+  ProfileScreen,
+  HomeScreen,
+  JobPost,
+  OthersProfile
+} from "./screens";
 
 const Profile = StackNavigator({
   Profile: { screen: ProfileScreen, navigationOptions: { title: "Profile" } }
@@ -15,7 +21,11 @@ const Search = StackNavigator({
 
 const Home = StackNavigator({
   Home: { screen: HomeScreen, navigationOptions: { title: "Home" } },
-  JobPost: { screen: JobPost, navigationOptions: { title: "Post job" } }
+  JobPost: { screen: JobPost, navigationOptions: { title: "Post job" } },
+  OthersProfile: {
+    screen: OthersProfile,
+    navigationOptions: { title: "Profile" }
+  }
 });
 
 export default TabNavigator(

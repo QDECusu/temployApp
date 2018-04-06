@@ -8,3 +8,11 @@ export const getProfileDetails = () => async dispatch => {
     payload: { profile }
   });
 };
+
+export const getOthersProfileDetails = id => async dispatch => {
+  const profile = await profileRequest.getOthersProfile(id);
+  dispatch({
+    type: types.GET_OTHERS_PROFILE,
+    payload: { profile }
+  });
+};
