@@ -12,8 +12,7 @@ import { request } from "../../api";
 export default class SearchScreen extends React.Component {
     render() { 
         return (
-            <View>
-                <Text> Search screen</Text>
+            <View>                
             </View>
         );
     }

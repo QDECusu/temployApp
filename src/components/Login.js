@@ -146,9 +146,9 @@ class Login extends React.Component {
             </View>
           )}
           {mode === "Login" && (
-            <View style={{ flexDirection: "row" }}>
-              <Button label="Login" onPress={this.onSubmit} />
+            <View style={{ flexDirection: "row" }}>              
               <Button label="Signup" onPress={this.changeMode} />
+              <Button label="Login" onPress={this.onSubmit} />
             </View>
           )}
         </View>

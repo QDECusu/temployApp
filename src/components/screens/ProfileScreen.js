@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text } from "react-native";
-import { Button } from "native-base";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Input, Button, colors } from "../utils";
 import { request } from "../../api";
 
 const mapStateToProps = ({ profile }) => ({ profile });
@@ -15,12 +16,20 @@ class Profile extends Component {
   render() {
     const { profile } = this.props;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ 
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <MaterialIcons
+            name="account-circle"
+            size={150}
+            color={colors.disabled}
+          />
         <Text style={style}>{profile.username}</Text>
-        <Text style={style}>{profile.first_name}</Text>
+        <Text style={style}>{profile.email}</Text>
         <Text style={style}>{profile.short_description}</Text>
-        <Button style={style} onPress={this.logout}>
-          <Text>Logout</Text>
+        <Button label="Logout" onPress={this.logout}>
         </Button>
       </View>
     );
@@ -28,8 +37,10 @@ class Profile extends Component {
 }
 
 const style = {
-  height: 50,
-  width: 50
+  margin: 10,
+  fontSize: 20,
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 export default Profile;
