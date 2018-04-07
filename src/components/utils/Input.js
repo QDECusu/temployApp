@@ -9,7 +9,7 @@ export default class Input extends React.PureComponent {
   render() {
     const { onChangeText, ...rest } = this.props;
     return <TextInput 
-            underlineColorAndroid={colors.primary}
+            underlineColorAndroid={"white"}
             selectionColor={"rgba(63,81,181,.65)"}
             onChangeText={this.onChangeText}
             {...rest}

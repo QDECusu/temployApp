@@ -4,13 +4,16 @@ import {
   Text,
   StyleSheet,
   KeyboardAvoidingView,
-  Keyboard
+  Keyboard,
+  Image,
 } from "react-native";
 import { connect } from "react-redux";
 import { Input, Button } from "./utils";
 import colors from "./utils/colors";
 import { request } from "../api";
 import { getProfileDetails } from "../actions/profile";
+
+const remote = "https://image.freepik.com/free-vector/blue-watercolor-texture-background_3785-153.jpg";
 
 @connect(null, { getProfileDetails })
 class Login extends React.Component {
@@ -65,50 +68,68 @@ class Login extends React.Component {
   render() {
     const { mode } = this.state;
     return (
+      
+      <View style={{
+        flex: 1}}>
+      <Image
+        style={{
+          backgroundColor: '#ccc',
+          flex: 1,
+          resizeMode: "cover",
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+        }}
+        source={{ uri: remote }}
+      />
+      {mode === "Signup" && (
+          <View style={{ flexDirection: "row", paddingRight: 250, paddingTop: 25 }}>
+            <Button
+              style={{ backgroundColor: "rgba(0,0,0,0)", height: 35 }}
+              label="<-Back"
+              onPress={this.changeMode}
+            />
+          </View>
+        )}
       <KeyboardAvoidingView
         behavior="padding"
         style={{
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: colors.primaryDeep
         }}
       >
-        {mode === "Signup" && (
-          <View style={{ flexDirection: "row", paddingRight: 200 }}>
-            <Button
-              style={{ backgroundColor: colors.primaryDeep, height: 25 }}
-              label="<-Back"
-              onPress={this.changeMode}
-            />
-          </View>
-        )}
+        
         <View
           style={{
-            backgroundColor: "white",
             justifyContent: "center",
             alignItems: "center",
-            padding: 20,
-            borderRadius: 10,
-            borderColor: "black",
-            borderStyle: "solid",
-            borderWidth: 3
           }}
         >
-          {mode === "Login" && <Text style={{ fontSize: 30 }}>Welcome To</Text>}
-          {mode === "Signup" && (
-            <Text style={{ fontSize: 30 }}>Signup For</Text>
+          {mode === "Login" && (
+            <View style={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}>
+              <Text style={{ color: "white", fontSize: 30 }}>Welcome To</Text>
+              <Text
+                style={{
+                  padding: 10,
+                  fontSize: 60,
+                  fontWeight: "bold",
+                  color: colors.primaryDeep,
+                  marginBottom: 30
+                }}
+              >
+                Temploy
+              </Text>
+            </View>
           )}
-          <Text
-            style={{
-              fontSize: 40,
-              fontWeight: "bold",
-              color: colors.primaryDeep,
-              marginBottom: 30
-            }}
-          >
-            Temploy
-          </Text>
+          {mode === "Signup" && (
+            <Text style={{ color: "white", fontWeight: "bold", fontSize: 40, marginBottom: 10 }}>Signup</Text>
+          )}
+          
           <Input
             name="username"
             placeholder="username"
@@ -151,26 +172,35 @@ class Login extends React.Component {
                 style={styles.inputField}
               />
               <View style={{ alignItems: "center" }}>
-                <Button label="Signup" onPress={this.onSubmit} />
+                <Button label="Signup" onPress={this.onSubmit} style={{width: 300}}/>
               </View>
             </View>
           )}
           {mode === "Login" && (
-            <View style={{ flexDirection: "row" }}>              
-              <Button label="Signup" onPress={this.changeMode} />
-              <Button label="Login" onPress={this.onSubmit} />
+            <View style={{ flexDirection: "column" }}>              
+              <Button label="Login" onPress={this.onSubmit} style={{width: 300}}/>
+              <Button label="Signup" onPress={this.changeMode} style={{width: 300}}/>
             </View>
           )}
         </View>
       </KeyboardAvoidingView>
+      </View>
+      
     );
   }
 }
 
 const styles = StyleSheet.create({
   inputField: {
+    backgroundColor: "white",
+    margin: 5,
+    padding: 15,
+    borderRadius: 5,
+    borderColor: colors.primaryDeep,
+    borderStyle: "solid",
+    borderWidth: 1,
     height: 50,
-    width: 200,
+    width: 300,
     fontSize: 18
   }
 });
