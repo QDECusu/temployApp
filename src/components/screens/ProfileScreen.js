@@ -16,10 +16,16 @@ class Profile extends Component {
   componentWillMount() {
     this.props.getMyJobs();
   }
+
+  editProfile = () => {
+    this.props.navigation.navigate("EditProfile");
+  };
+
   logout = () => {
     request.logout();
     this.props.navigation.navigate("Authentication");
   };
+
   render() {
     const { profile, myJobs } = this.props;
     return (
@@ -33,9 +39,11 @@ class Profile extends Component {
             size={150}
             color={colors.disabled}
           />
+        <Text style={style}>{profile.first_name} {profile.last_name}</Text>
         <Text style={style}>{profile.username}</Text>
         <Text style={style}>{profile.email}</Text>
         <Text style={style}>{profile.short_description}</Text>
+        <Button label="Edit Profile" onPress={this.editProfile} />
         <Button label="Logout" onPress={this.logout}>
         </Button>
         {myJobs.map(jp => (

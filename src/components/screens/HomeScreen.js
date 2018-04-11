@@ -29,7 +29,6 @@ class HomeScreen extends React.Component {
     return (
       <View>
         <Button label="Post A Job" onPress={this.postJob} />
-        <Text>Home screen</Text>
         {jobs.map(jp => <JobPosting key={jp.id} jobPosting={jp} />)}
       </View>
     );

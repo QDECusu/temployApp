@@ -66,6 +66,7 @@ class JobPost extends Component {
         <NamedTextField
           name="job_email"
           onChange={this.onChange}
+          keyboardType={"email-address"}
           value={this.state.job_email}
           placeholder="email"
         />
