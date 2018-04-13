@@ -20,8 +20,10 @@ class OthersProfile extends Component {
       return null;
     }
     return (
+      console.log("working..."),
       <View>
-        <Text>{openProfile.username}</Text>
+        <Text>{openProfile.user_name}</Text>
+        <Text>  Failed to open this user's profile</Text>
       </View>
     );
   }

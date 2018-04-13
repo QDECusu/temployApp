@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Input, Button, colors } from "../utils";
 import { request } from "../../api";
 import { getMyJobs } from "../../actions/jobs";
 import JobPosting from "../JobPosting";
+import { Divider, Avatar } from 'react-native-elements';
 
 const mapStateToProps = ({ profile, myJobs }) => ({ profile, myJobs });
 
@@ -28,28 +29,37 @@ class Profile extends Component {
 
   render() {
     const { profile, myJobs } = this.props;
+    const initials = profile.first_name[0] + profile.last_name[0];
     return (
-      <View style={{ 
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}>
-        <MaterialIcons
-            name="account-circle"
-            size={150}
-            color={colors.disabled}
+      <ScrollView>
+        <View style={{ 
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+          <Avatar
+            xlarge
+            rounded
+            title={initials}
+            onPress={() => console.log(profile)}
+            activeOpacity={0.7}
+            containerStyle={{backgroundColor:colors.primary, margin: 20}}
           />
-        <Text style={style}>{profile.first_name} {profile.last_name}</Text>
-        <Text style={style}>{profile.username}</Text>
-        <Text style={style}>{profile.email}</Text>
-        <Text style={style}>{profile.short_description}</Text>
-        <Button label="Edit Profile" onPress={this.editProfile} />
-        <Button label="Logout" onPress={this.logout}>
-        </Button>
-        {myJobs.map(jp => (
-          <JobPosting own key={jp.company_name} jobPosting={jp} />
-        ))}
-      </View>
+          <Text style={style}>{profile.first_name} {profile.last_name}</Text>
+          <Text style={style}>{profile.username}</Text>
+          <Text style={style}>{profile.email}</Text>
+          <Text style={style}>{profile.short_description}</Text>
+          <View style={{alignItems:"center"}}>
+          <Button label="Edit Profile" onPress={this.editProfile} />
+          <Button label="Logout" onPress={this.logout} />
+            <Divider style={{ margin: 20, width: 300, backgroundColor: colors.primaryDeep }} />          
+          </View>
+          <Text style={style}>My Job Posts:</Text>
+          {myJobs.map(jp => (
+            <JobPosting own key={jp.company_name} jobPosting={jp}/>
+          ))}
+        </View>
+      </ScrollView>
     );
   }
 }

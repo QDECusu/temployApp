@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { withNavigation } from "react-navigation";
+import { Card, colors } from 'react-native-elements'
+
 
 @withNavigation
 class JobPosting extends Component {
@@ -21,10 +23,22 @@ class JobPosting extends Component {
     } = this.props.jobPosting;
     return (
       <TouchableOpacity onPress={this.openProfile}>
-        <Text>{company_name}</Text>
-        <Text>{job_position}</Text>
-        <Text>{job_phone}</Text>
-        <Text>{job_email}</Text>
+        <Card title="User Name Here"  containerStyle={{width: 325}}>
+        <View style={{flex: 2, flexDirection: "row" }}>
+          <View style={{paddingRight: 5, borderStyle: "solid", borderRightWidth: 1, borderRightColor: colors.disabled}}>
+            <Text>Company</Text>
+            <Text>Position</Text>
+            <Text>Phone</Text>
+            <Text>Email</Text>
+          </View>
+          <View stlye={{paddingLeft: 12}}>
+            <Text>  {company_name}</Text>
+            <Text>  {job_position}</Text>
+            <Text>  {job_phone}</Text>
+            <Text>  {job_email}</Text>
+          </View>
+        </View>
+        </Card>
       </TouchableOpacity>
     );
   }

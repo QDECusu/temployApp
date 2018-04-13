@@ -4,7 +4,8 @@ import {
   Text,
   StyleSheet,
   KeyboardAvoidingView,
-  Keyboard
+  Keyboard,
+  TouchableWithoutFeedback
 } from "react-native";
 import { Input, Button, colors } from "../utils";
 import { request } from "../../api";
@@ -13,18 +14,17 @@ import { SearchBar } from 'react-native-elements';
 export default class SearchScreen extends React.Component {
     render() { 
         return (
-            <View> 
+            <TouchableWithoutFeedback> 
                 <SearchBar
-                lightTheme
-                onChangeText={() => {}}
-                placeholder='Search For Jobs'
+                    lightTheme
+                    onChangeText={() => {}}
+                    showLoading
+                    platform="android"
+                    cancelButtonTitle="Cancel"
+                    placeholder='Search'
                 />
-                <SearchBar
-                lightTheme
-                onChangeText={() => {}}
-                placeholder='Search For Employees'
-                />               
-            </View>
+                
+            </TouchableWithoutFeedback>
         );
     }
 }
