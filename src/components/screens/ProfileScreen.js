@@ -31,11 +31,13 @@ class Profile extends Component {
     const { profile, myJobs } = this.props;
     const initials = profile.first_name[0] + profile.last_name[0];
     return (
-      <ScrollView>
+      <ScrollView style={{backgroundColor: "skyblue"}}>
         <View style={{ 
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
+            backgroundColor: "skyblue",
+            marginBottom: 30
           }}>
           <Avatar
             xlarge
@@ -54,7 +56,7 @@ class Profile extends Component {
           <Button label="Logout" onPress={this.logout} />
             <Divider style={{ margin: 20, width: 300, backgroundColor: colors.primaryDeep }} />          
           </View>
-          <Text style={style}>My Job Posts:</Text>
+          <Text style={style}>MY JOB POSTS</Text>
           {myJobs.map(jp => (
             <JobPosting own key={jp.company_name} jobPosting={jp}/>
           ))}
@@ -67,6 +69,7 @@ class Profile extends Component {
 const style = {
   margin: 10,
   fontSize: 20,
+  color: "white",
   alignItems: "center",
   justifyContent: "center",
 };

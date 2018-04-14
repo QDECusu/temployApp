@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text, KeyboardAvoidingView, Keyboard } from "react-native";
+import { View, Text, KeyboardAvoidingView, ScrollView, StyleSheet } from "react-native";
 import { Input, Button, colors } from "../utils";
 import NamedTextField from "../NamedTextField";
 import { jobs as jobRequests } from "../../api";
@@ -42,50 +42,79 @@ class JobPost extends Component {
         behavior="padding"
         style={{
           flex: 1,
-          alignItems: "center"
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "skyblue"
         }}
       >
-        <NamedTextField
-          name="company_name"
-          onChange={this.onChange}
-          value={this.state.company_name}
-          placeholder="company name"
-        />
-        <NamedTextField
-          name="job_position"
-          onChange={this.onChange}
-          value={this.state.job_position}
-          placeholder="job position"
-        />
-        <NamedTextField
-          name="job_phone"
-          onChange={this.onChange}
-          value={this.state.job_phone}
-          placeholder="phone"
-        />
-        <NamedTextField
-          name="job_email"
-          onChange={this.onChange}
-          keyboardType={"email-address"}
-          value={this.state.job_email}
-          placeholder="email"
-        />
-        <NamedTextField
-          name="job_description"
-          onChange={this.onChange}
-          value={this.state.job_description}
-          placeholder="job description"
-        />
-        <NamedTextField
-          name="job_schedule"
-          onChange={this.onChange}
-          value={this.state.job_schedule}
-          placeholder="job schedule"
-        />
-        <Button label="Submit" onPress={this.submit} />
+        <ScrollView>
+          <View style={{marginBottom: 300, marginLeft: 25, marginRight: 25}}>
+            <NamedTextField
+              name="company_name"
+              onChange={this.onChange}
+              value={this.state.company_name}
+              placeholder="company name"
+              style={styles.inputField}
+            />
+            <NamedTextField
+              name="job_position"
+              onChange={this.onChange}
+              value={this.state.job_position}
+              placeholder="job position"
+              style={styles.inputField}
+            />
+            <NamedTextField
+              name="job_phone"
+              onChange={this.onChange}
+              value={this.state.job_phone}
+              placeholder="phone"
+              style={styles.inputField}
+            />
+            <NamedTextField
+              name="job_email"
+              onChange={this.onChange}
+              keyboardType={"email-address"}
+              value={this.state.job_email}
+              placeholder="email"
+              style={styles.inputField}
+            />
+            <NamedTextField
+              name="job_description"
+              onChange={this.onChange}
+              value={this.state.job_description}
+              placeholder="job description"
+              style={styles.inputField}
+            />
+            <NamedTextField
+              name="job_schedule"
+              onChange={this.onChange}
+              value={this.state.job_schedule}
+              placeholder="job schedule"
+              style={styles.inputField}
+            />
+            <View style={{alignItems:"center"}}>
+              <Button label="Submit" onPress={this.submit}/>
+            </View>
+          </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  inputField: {
+    backgroundColor: "white",
+    margin: 5,
+    padding: 15,
+    borderRadius: 5,
+    borderColor: colors.primaryDeep,
+    borderStyle: "solid",
+    borderWidth: 1,
+    height: 50,
+    width: 300,
+    fontSize: 18,
+  }
+});
 
 export default JobPost;

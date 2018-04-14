@@ -12,7 +12,7 @@ export default class NamedTextField extends Component {
       <TextInput
         value={this.props.value}
         style={[styles.TextInput]}
-        underlineColorAndroid={colors.primary}
+        underlineColorAndroid={"white"}
         selectionColor={"rgba(63,81,181,.65)"}
         onChangeText={this.onChange}
         {...rest}
