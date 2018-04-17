@@ -6,7 +6,7 @@ import { Input, Button, colors } from "../utils";
 import { request } from "../../api";
 import { getMyJobs } from "../../actions/jobs";
 import JobPosting from "../JobPosting";
-import { Divider, Avatar } from 'react-native-elements';
+import { Divider, Avatar } from "react-native-elements";
 
 const mapStateToProps = ({ profile, myJobs }) => ({ profile, myJobs });
 
@@ -18,10 +18,9 @@ class Profile extends Component {
     this.props.getMyJobs();
   }
 
-  editJobPost = (jp) => {
-    console.log(jp)
-    this.props.navigation.navigate("EditJobPost", { title: jp.company_name })
-  }
+  editJobPost = jp => {
+    this.props.navigation.navigate("EditJobPost", { title: jp.company_name });
+  };
 
   editProfile = () => {
     this.props.navigation.navigate("EditProfile");
@@ -36,34 +35,49 @@ class Profile extends Component {
     const { profile, myJobs } = this.props;
     const initials = profile.first_name[0] + profile.last_name[0];
     return (
-      <ScrollView style={{backgroundColor: "skyblue"}}>
-        <View style={{ 
+      <ScrollView style={{ backgroundColor: "skyblue" }}>
+        <View
+          style={{
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "skyblue",
             marginBottom: 30
-          }}>
+          }}
+        >
           <Avatar
             xlarge
             rounded
+            source={profile.image != null ? { uri: profile.image } : null}
             title={initials}
-            onPress={() => console.log(profile)}
+            onPress={() => {}}
             activeOpacity={0.7}
-            containerStyle={{backgroundColor:colors.primary, margin: 20}}
+            containerStyle={{ backgroundColor: colors.primary, margin: 20 }}
           />
-          <Text style={style}>{profile.first_name} {profile.last_name}</Text>
+          <Text style={style}>
+            {profile.first_name} {profile.last_name}
+          </Text>
           <Text style={style}>{profile.username}</Text>
           <Text style={style}>{profile.email}</Text>
           <Text style={style}>{profile.short_description}</Text>
-          <View style={{alignItems:"center"}}>
-          <Button label="Edit Profile" onPress={this.editProfile} />
-          <Button label="Logout" onPress={this.logout} />
-            <Divider style={{ margin: 20, width: 300, backgroundColor: colors.primaryDeep }} />          
+          <View style={{ alignItems: "center" }}>
+            <Button label="Edit Profile" onPress={this.editProfile} />
+            <Button label="Logout" onPress={this.logout} />
+            <Divider
+              style={{
+                margin: 20,
+                width: 300,
+                backgroundColor: colors.primaryDeep
+              }}
+            />
           </View>
           <Text style={style}>MY JOB POSTS</Text>
           {myJobs.map(jp => (
-            <JobPosting key={jp.company_name} jobPosting={jp} onPress={() => this.editJobPost(jp)}/>
+            <JobPosting
+              key={jp.company_name}
+              jobPosting={jp}
+              onPress={() => this.editJobPost(jp)}
+            />
           ))}
         </View>
       </ScrollView>
@@ -76,7 +90,7 @@ const style = {
   fontSize: 20,
   color: "white",
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "center"
 };
 
 export default Profile;

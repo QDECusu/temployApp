@@ -3,6 +3,20 @@ import BASE_URL from "./url";
 
 class Request {
   getToken = () => AsyncStorage.getItem("token");
+  upload = async (name, form) => {
+    try {
+      const token = await this.getToken();
+      const headers = new Headers({
+        "Content-Type": "multipart/form-data",
+        Authorization: `Token ${token}`
+      });
+      const body = new FormData();
+      body.append(name, form);
+      fetch(`${BASE_URL}/profilePicture/`, { method: "post", body, headers });
+    } catch (e) {
+      console.error(e);
+    }
+  };
   _request = async (route, options = {}, auth = true) => {
     try {
       const token = await this.getToken();
@@ -16,7 +30,7 @@ class Request {
       const response = await blob.json();
       return response;
     } catch (e) {
-      console.warn(e);
+      console.error(e);
     }
   };
   login = async options => {
