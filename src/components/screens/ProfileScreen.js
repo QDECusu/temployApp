@@ -72,13 +72,13 @@ class Profile extends Component {
             />
           </View>
           <Text style={style}>MY JOB POSTS</Text>
-          {myJobs.map(jp => (
-            <JobPosting
-              key={jp.company_name}
-              jobPosting={jp}
-              onPress={() => this.editJobPost(jp)}
-            />
-          ))}
+          {myJobs.map(jp => {
+            console.log(jp);
+            if (jp === null) {
+              return <Text style={style}>You have not posted any jobs.</Text>;
+            }
+            return <JobPosting own key={jp.company_name} jobPosting={jp} />;
+          })}
         </View>
       </ScrollView>
     );
