@@ -22,6 +22,11 @@ class HomeScreen extends React.Component {
   componentWillMount() {
     this.props.getJobs();
   }
+  openOthersProfile = jp => {
+    this.props.navigation.navigate("OthersProfile", {
+      userId: jp.user
+    })
+  }
   postJob = () => {
     this.props.navigation.navigate("JobPost");
   };

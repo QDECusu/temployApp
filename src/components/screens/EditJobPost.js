@@ -14,13 +14,13 @@ const mapDispatchToProps = { getMyJobs };
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Profile extends Component {
+  static navigationOptions = ({ navigation }) => ({ title: navigation.state.params.title })
   componentWillMount() {
     this.props.getMyJobs();
   }
 
-  editJobPost = (jp) => {
-    console.log(jp)
-    this.props.navigation.navigate("EditJobPost", { title: jp.company_name })
+  editJobPost = () => {
+      this.props.navigation.navigate("EditJobPost")
   }
 
   editProfile = () => {
@@ -34,7 +34,6 @@ class Profile extends Component {
 
   render() {
     const { profile, myJobs } = this.props;
-    const initials = profile.first_name[0] + profile.last_name[0];
     return (
       <ScrollView style={{backgroundColor: "skyblue"}}>
         <View style={{ 
@@ -44,34 +43,15 @@ class Profile extends Component {
             backgroundColor: "skyblue",
             marginBottom: 30
           }}>
-          <Avatar
-            xlarge
-            rounded
-            title={initials}
-            onPress={() => console.log(profile)}
-            activeOpacity={0.7}
-            containerStyle={{backgroundColor:colors.primary, margin: 20}}
-          />
-          <Text style={style}>{profile.first_name} {profile.last_name}</Text>
-          <Text style={style}>{profile.username}</Text>
-          <Text style={style}>{profile.email}</Text>
-          <Text style={style}>{profile.short_description}</Text>
           <View style={{alignItems:"center"}}>
-            <Button label="Edit Profile" onPress={this.editProfile} />
-            <Button label="Logout" onPress={this.logout} />
+          <Button label="Edit Job Post" onPress={this.editJobPost} />
+          <Button label="Save" onPress={this.logout} />
             <Divider style={{ margin: 20, width: 300, backgroundColor: colors.primaryDeep }} />          
           </View>
           <Text style={style}>MY JOB POSTS</Text>
-          {myJobs.map(jp => {
-            console.log(jp)
-            if(jp === null) {
-              return (
-                <Text style={style}>You have not posted any jobs.</Text> 
-              )
-            }
-            return (
-            <JobPosting own key={jp.company_name} jobPosting={jp}/>
-          )})}
+          {myJobs.map(jp => (
+            <JobPosting own key={jp.company_name} jobPosting={jp} onPress={this.editJobPost}/>
+          ))}
         </View>
       </ScrollView>
     );
