@@ -21,6 +21,11 @@ class HomeScreen extends React.Component {
   componentWillMount() {
     this.props.getJobs();
   }
+  openOthersProfile = jp => {
+    this.props.navigation.navigate("OthersProfile", {
+      userId: jp.user
+    })
+  }
   postJob = () => {
     this.props.navigation.navigate("JobPost");
   };
@@ -29,7 +34,7 @@ class HomeScreen extends React.Component {
     return (
       <View>
         <Button label="Post A Job" onPress={this.postJob} />
-        {jobs.map(jp => <JobPosting key={jp.id} jobPosting={jp} />)}
+        {jobs.map(jp => <JobPosting key={jp.id} jobPosting={jp} onPress={() => this.openOthersProfile(jp)} />)}
       </View>
     );
   }

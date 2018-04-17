@@ -8,11 +8,15 @@ import {
   ProfileScreen,
   HomeScreen,
   JobPost,
-  OthersProfile
+  OthersProfile,
+  EditJobPost,
+  EditProfile,
 } from "./screens";
 
 const Profile = StackNavigator({
-  Profile: { screen: ProfileScreen, navigationOptions: { title: "Profile" } }
+  Profile: { screen: ProfileScreen, navigationOptions: { title: "Profile" } },
+  EditJobPost: { screen: EditJobPost },
+  EditProfile: { screen: EditProfile }
 });
 
 const Search = StackNavigator({

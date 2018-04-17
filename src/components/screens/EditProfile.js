@@ -6,8 +6,7 @@ const mapStateToProps = ({ profile }) => ({ profile });
 
 @connect(mapStateToProps)
 class EditProfile extends Component {
-  constructor(props) {
-    this.state = {
+    state = {
       user: {
         email: props.profile.email,
         first_name: props.profile.first_name,
@@ -17,8 +16,9 @@ class EditProfile extends Component {
       short_description: "",
       skills: ""
     };
-  }
   render() {
     return <View />;
   }
 }
+
+export default EditProfile
