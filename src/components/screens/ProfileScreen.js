@@ -52,14 +52,21 @@ class Profile extends Component {
           <Text style={style}>{profile.email}</Text>
           <Text style={style}>{profile.short_description}</Text>
           <View style={{alignItems:"center"}}>
-          <Button label="Edit Profile" onPress={this.editProfile} />
-          <Button label="Logout" onPress={this.logout} />
+            <Button label="Edit Profile" onPress={this.editProfile} />
+            <Button label="Logout" onPress={this.logout} />
             <Divider style={{ margin: 20, width: 300, backgroundColor: colors.primaryDeep }} />          
           </View>
           <Text style={style}>MY JOB POSTS</Text>
-          {myJobs.map(jp => (
+          {myJobs.map(jp => {
+            console.log(jp)
+            if(jp === null) {
+              return (
+                <Text style={style}>You have not posted any jobs.</Text> 
+              )
+            }
+            return (
             <JobPosting own key={jp.company_name} jobPosting={jp}/>
-          ))}
+          )})}
         </View>
       </ScrollView>
     );

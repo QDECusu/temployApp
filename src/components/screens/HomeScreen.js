@@ -1,10 +1,11 @@
-import React from "react";
+import React, {Component} from "react";
 import {
   View,
   Text,
   StyleSheet,
   KeyboardAvoidingView,
-  Keyboard
+  Keyboard,
+  ScrollView
 } from "react-native";
 import { connect } from "react-redux";
 import { getJobs, getMyJobs } from "../../actions/jobs";
@@ -27,10 +28,15 @@ class HomeScreen extends React.Component {
   render() {
     const { jobs } = this.props;
     return (
-      <View>
-        <Button label="Post A Job" onPress={this.postJob} />
-        {jobs.map(jp => <JobPosting key={jp.id} jobPosting={jp} />)}
-      </View>
+      <ScrollView style={{ backgroundColor: "skyblue"}}>
+        <View style={{ flex: 1, marginBottom: 30, alignItems: "center" }}>
+          <Button style={{marginTop: 10, width: 300}} label="Post A Job" onPress={this.postJob} />
+          {jobs.map(jp => {
+            return(
+            <JobPosting key={jp.id} jobPosting={jp} />
+          )})}
+        </View>
+      </ScrollView>
     );
   }
 }
