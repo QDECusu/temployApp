@@ -8,9 +8,9 @@ const mapStateToProps = ({ profile }) => ({ profile });
 class EditProfile extends Component {
     state = {
       user: {
-        email: props.profile.email,
-        first_name: props.profile.first_name,
-        last_name: props.profile.last_name
+        email: this.props.profile.email,
+        first_name: this.props.profile.first_name,
+        last_name: this.props.profile.last_name
       },
       zipcode: "",
       short_description: "",
