@@ -1,4 +1,4 @@
 node_modules/**/*
 .expo/*
 npm-debug.*
-./src/api/url.js
+src/api/url.js

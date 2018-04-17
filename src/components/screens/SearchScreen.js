@@ -14,16 +14,17 @@ import { SearchBar } from 'react-native-elements';
 export default class SearchScreen extends React.Component {
     render() { 
         return (
-            <TouchableWithoutFeedback> 
-                <SearchBar
-                    lightTheme
-                    onChangeText={() => {}}
-                    showLoading
-                    platform="android"
-                    cancelButtonTitle="Cancel"
-                    placeholder='Search'
-                />
-                
+            <TouchableWithoutFeedback>
+                <View style={{flex: 1, backgroundColor: "white"}}> 
+                    <SearchBar
+                        lightTheme
+                        onChangeText={() => {}}
+                        showLoading
+                        platform="android"
+                        cancelButtonTitle="Cancel"
+                        placeholder='Search for Jobs and Employees'
+                    />
+                </View>
             </TouchableWithoutFeedback>
         );
     }
