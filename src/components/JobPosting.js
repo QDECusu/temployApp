@@ -1,8 +1,17 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { withNavigation } from "react-navigation";
 import { Card, colors } from 'react-native-elements'
 
+
+@withNavigation
 class JobPosting extends Component {
+  openProfile = () => {
+    if (!this.props.own)
+      this.props.navigation.navigate("OthersProfile", {
+        userId: this.props.jobPosting.user
+      });
+  };
   render() {
     console.log(this.props.jobPosting)
     const {
