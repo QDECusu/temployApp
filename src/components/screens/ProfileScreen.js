@@ -73,7 +73,6 @@ class Profile extends Component {
           </View>
           <Text style={style}>MY JOB POSTS</Text>
           {myJobs.map(jp => {
-            console.log(jp);
             if (jp === null) {
               return <Text style={style}>You have not posted any jobs.</Text>;
             }

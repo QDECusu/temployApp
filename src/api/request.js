@@ -12,7 +12,7 @@ class Request {
       });
       const body = new FormData();
       body.append(name, form);
-      fetch(`${BASE_URL}/profilePicture/`, { method: "post", body, headers });
+      return fetch(`${BASE_URL}/profilePicture/`, { method: "post", body, headers });
     } catch (e) {
       console.error(e);
     }

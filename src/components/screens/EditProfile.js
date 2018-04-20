@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 import { Permissions, ImagePicker } from "expo";
 import { View, Text } from "react-native";
 import { Avatar } from "react-native-elements";
+import { getProfileDetails } from '../../actions/profile'
 import { colors, Button } from "../utils";
 import { request } from "../../api";
 import BASE_URL from "../../api/url";
 
 const mapStateToProps = ({ profile }) => ({ profile });
 
-@connect(mapStateToProps)
+const mapDispatchToProps = { getProfileDetails }
+
+@connect(mapStateToProps, mapDispatchToProps)
 class EditProfile extends Component {
   state = {
     email: this.props.profile.email,
@@ -36,18 +39,24 @@ class EditProfile extends Component {
       uri: this.state.imageURI,
       type: "image/jpeg",
       name: "Picture"
-    });
+    })
+      .then(() => this.props.getProfileDetails());
+    this.props.navigation.goBack();
   };
   render() {
     const { profile } = this.props;
     const { imageURI } = this.state;
     const initials = profile.first_name[0] + profile.last_name[0];
     return (
-      <View>
+      <View style={{justifyContent: "center", alignItems: "center"}}>
         <Avatar
           xlarge
           rounded
-          source={imageURI != null ? { uri: imageURI } : null}
+          source={imageURI != null
+            ? { uri: imageURI }
+            : profile.image != null
+            ? { uri: profile.image }
+            : null}
           title={initials}
           onPress={this.pickImage}
           activeOpacity={0.7}

@@ -13,7 +13,6 @@ class JobPosting extends Component {
       });
   };
   render() {
-    console.log(this.props.jobPosting)
     const {
       company_name,
       job_position,
@@ -22,7 +21,6 @@ class JobPosting extends Component {
       job_description,
       job_schedule
     } = this.props.jobPosting;
-    console.log(company_name, job_description)
     return (
       <TouchableOpacity onPress={this.openProfile}>
         <Card title={company_name}  containerStyle={{width: 325}}>
