@@ -25,7 +25,7 @@ const Search = StackNavigator({
 
 const Home = StackNavigator({
   Home: { screen: HomeScreen, navigationOptions: { title: "Home" } },
-  JobPost: { screen: JobPost, navigationOptions: { title: "Post job" } },
+  JobPost: { screen: JobPost, navigationOptions: { title: "Post A Job" } },
   OthersProfile: {
     screen: OthersProfile,
     navigationOptions: { title: "Profile" }
