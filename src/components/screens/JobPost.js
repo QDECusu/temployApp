@@ -66,6 +66,7 @@ class JobPost extends Component {
             <NamedTextField
               name="job_phone"
               onChange={this.onChange}
+              keyboardType={"numeric"}
               value={this.state.job_phone}
               placeholder="phone"
               style={styles.inputField}
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
   inputField: {
     backgroundColor: "white",
     margin: 5,
-    padding: 15,
+    padding: 10,
     borderRadius: 5,
     borderColor: colors.primaryDeep,
     borderStyle: "solid",

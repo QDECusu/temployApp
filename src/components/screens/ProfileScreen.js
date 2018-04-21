@@ -50,7 +50,7 @@ class Profile extends Component {
             rounded
             source={profile.image != null ? { uri: profile.image } : null}
             title={initials}
-            onPress={() => {}}
+            //onPress={() => {}}
             activeOpacity={0.7}
             containerStyle={{ backgroundColor: colors.primary, margin: 20 }}
           />

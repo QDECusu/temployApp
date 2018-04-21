@@ -15,8 +15,8 @@ import {
 
 const Profile = StackNavigator({
   Profile: { screen: ProfileScreen, navigationOptions: { title: "Profile" } },
-  EditJobPost: { screen: EditJobPost },
-  EditProfile: { screen: EditProfile }
+  EditJobPost: { screen: EditJobPost, navigationOptions: {title: "Edit Job Post"} },
+  EditProfile: { screen: EditProfile, navigationOptions: { title: "Edit Profile"} },
 });
 
 const Search = StackNavigator({
