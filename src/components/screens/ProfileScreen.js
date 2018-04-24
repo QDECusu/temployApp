@@ -18,7 +18,7 @@ class Profile extends Component {
     this.props.getMyJobs();
   }
   editJobPost = jp => {
-    this.props.navigation.navigate("EditJobPost", { title: jp.company_name });
+    this.props.navigation.navigate("EditJobPost", { jp });
   };
   editProfile = () => {
     this.props.navigation.navigate("EditProfile");
@@ -54,7 +54,9 @@ class Profile extends Component {
           </Text>
           <Text style={style}>{profile.username}</Text>
           <Text style={style}>{profile.email}</Text>
-          <Text style={style}>{profile.zipcode}</Text>
+          <Text style={style}>
+            {profile.zipcode == 0 ? "" : profile.zipcode}
+          </Text>
           <Text style={style}>{profile.short_description}</Text>
           <View style={{ alignItems: "center" }}>
             <Button label="Edit Profile" onPress={this.editProfile} />
@@ -76,7 +78,7 @@ class Profile extends Component {
                 <JobPosting
                   key={jp.company_name}
                   jobPosting={jp}
-                  onPress={this.editJobPost}
+                  onPress={() => this.editJobPost(jp)}
                 />
               );
             })

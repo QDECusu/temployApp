@@ -37,6 +37,7 @@ class HomeScreen extends React.Component {
   postJob = () => {
     this.props.navigation.navigate("JobPost");
   };
+
   render() {
     const { jobs } = this.props;
     return (

@@ -116,6 +116,9 @@ class EditProfile extends Component {
               marginBottom: 30
             }}
           />
+          <Text style={{ fontSize: 25, marginBottom: 20 }}>
+            {profile.username}
+          </Text>
           <View
             style={{
               flex: 1,
@@ -148,17 +151,7 @@ class EditProfile extends Component {
               style={styles.nameInputField}
             />
           </View>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <Text style={styles.textStyle}>Username: {profile.username}</Text>
-            <Text style={styles.textStyle}>Password:</Text>
-          </View>
+          <Text style={{ fontSize: 20, marginRight: 200 }}>Password:</Text>
           <NamedTextField
             name="oldPassword"
             placeholder="old password"
@@ -173,7 +166,7 @@ class EditProfile extends Component {
             secureTextEntry
             style={styles.inputField}
           />
-          <Text style={styles.textStyle}>Email: </Text>
+          <Text style={{ fontSize: 20, marginRight: 230 }}>Email: </Text>
           <NamedTextField
             name="email"
             value={this.state.email}
@@ -181,7 +174,7 @@ class EditProfile extends Component {
             onChange={this.onChange}
             style={styles.inputField}
           />
-          <Text style={styles.textStyle}>Zipcode: </Text>
+          <Text style={{ fontSize: 20, marginRight: 210 }}>Zipcode: </Text>
           <NamedTextField
             name="zipcode"
             placeholder="zipcode"
@@ -190,7 +183,7 @@ class EditProfile extends Component {
             onChange={this.onChange}
             style={styles.inputField}
           />
-          <Text style={styles.textStyle}>About Me:</Text>
+          <Text style={{ fontSize: 20, marginRight: 200 }}>About Me:</Text>
           <NamedTextField
             name="shortDescription"
             placeholder="Write a brief description about yourself."
@@ -199,7 +192,7 @@ class EditProfile extends Component {
             onChange={this.onChange}
             style={styles.largeInputField}
           />
-          <Text style={styles.textStyle}>Skills: </Text>
+          <Text style={{ fontSize: 20, marginRight: 235 }}>Skills: </Text>
           <NamedTextField
             name="skills"
             placeholder="List your skills."
@@ -262,10 +255,6 @@ const styles = StyleSheet.create({
     height: 150,
     width: 300,
     fontSize: 18
-  },
-  textStyle: {
-    fontSize: 20,
-    marginRight: 200
   },
   nameTextStyle: {
     fontSize: 20,

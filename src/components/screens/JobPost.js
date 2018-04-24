@@ -61,7 +61,7 @@ class JobPost extends Component {
         }}
       >
         <ScrollView>
-          <View style={{ marginBottom: 300, marginLeft: 25, marginRight: 25 }}>
+          <View style={{ marginBottom: 100, marginLeft: 25, marginRight: 25 }}>
             <NamedTextField
               name="company_name"
               onChange={this.onChange}
@@ -96,6 +96,7 @@ class JobPost extends Component {
               name="job_description"
               onChange={this.onChange}
               value={this.state.job_description}
+              multiline={true}
               placeholder="job description"
               style={styles.largeInputField}
             />
