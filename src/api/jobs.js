@@ -8,8 +8,8 @@ class Jobs {
     job_email,
     job_description,
     job_schedule
-  }) =>
-    request.post("JobPosts", {
+  }) => {
+    return request.post("JobPosts", {
       body: {
         company_name,
         job_description,
@@ -19,6 +19,7 @@ class Jobs {
         job_schedule
       }
     });
+  };
   getPosts = () => request.get("JobPosts");
   getMyPosts = () => request.get("listUserJobPosts");
 }

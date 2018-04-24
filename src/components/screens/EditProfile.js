@@ -42,10 +42,7 @@ class EditProfile extends Component {
   };
   submitChanges = () => {
     Promise.all([this.submitPhoto(), this.submitProfileInfo()])
-      .then(([res1, res2]) => {
-        console.log(res1, res2);
-        this.props.getProfileDetails();
-      })
+      .then(() => this.props.getProfileDetails())
       .catch(e => console.warn(e));
     this.props.navigation.goBack();
   };
