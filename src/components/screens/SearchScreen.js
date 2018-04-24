@@ -26,7 +26,6 @@ class SearchScreen extends React.Component {
     this.setState({ query });
   };
   submit = () => {
-    console.log("i am doing it right now");
     this.props.searchQuery(this.state.query);
   };
   render() {

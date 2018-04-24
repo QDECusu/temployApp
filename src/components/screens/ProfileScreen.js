@@ -17,20 +17,16 @@ class Profile extends Component {
   componentWillMount() {
     this.props.getMyJobs();
   }
-
   editJobPost = jp => {
     this.props.navigation.navigate("EditJobPost", { title: jp.company_name });
   };
-
   editProfile = () => {
     this.props.navigation.navigate("EditProfile");
   };
-
   logout = () => {
     request.logout();
     this.props.navigation.navigate("Authentication");
   };
-
   render() {
     const { profile, myJobs } = this.props;
     const initials = profile.first_name[0] + profile.last_name[0];

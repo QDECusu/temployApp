@@ -1,13 +1,47 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { ScrollView, Text } from "react-native";
+import { connect } from "react-redux";
+import { getJobs } from "../../actions/jobs";
+import { colors, Button } from "../utils";
+import { jobs } from "../../api";
+import JobPosting from "../JobPosting";
 
-export default class ShowJobPost extends Component {
+const mapDispatchToProps = { getJobs };
+
+@connect(null, mapDispatchToProps)
+class ShowJobPost extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { jp, applyForJob } = navigation.state.params;
+    return {
+      title: jp.company_name,
+      headerRight: (
+        <Button
+          label="Apply"
+          disabled={jp.has_applied}
+          onPress={() => {
+            applyForJob(jp.id);
+            navigation.goBack();
+          }}
+        />
+      )
+    };
+  };
+  openOthersProfile = jp => {
+    this.props.navigation.navigate("OthersProfile", {
+      userId: jp.user
+    });
+  };
   render() {
-    console.log(this.props.navigation.state.params);
+    const { jp } = this.props.navigation.state.params;
     return (
-      <View>
-        <Text>THis is a job post</Text>
-      </View>
+      <ScrollView style={{ flex: 1 }}>
+        <JobPosting
+          jobPosting={jp}
+          onPress={() => this.openOthersProfile(jp)}
+        />
+      </ScrollView>
     );
   }
 }
+
+export default ShowJobPost;

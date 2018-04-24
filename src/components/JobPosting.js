@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Card, colors } from "react-native-elements";
+import { jobs } from "../api";
 
 @withNavigation
 class JobPosting extends Component {
@@ -12,12 +13,24 @@ class JobPosting extends Component {
       job_phone,
       job_email,
       job_description,
-      job_schedule
+      job_schedule,
+      has_applied
     } = this.props.jobPosting;
     return (
       <TouchableOpacity onPress={this.props.onPress}>
-        <Card title={company_name} containerStyle={{ width: 325 }}>
-          <View style={{ flex: 2, flexDirection: "row" }}>
+        <Card
+          title={company_name}
+          containerStyle={{
+            width: 325,
+            backgroundColor: has_applied ? colors.disabled : "white"
+          }}
+        >
+          <View
+            style={{
+              flex: 2,
+              flexDirection: "row"
+            }}
+          >
             <View
               style={{
                 paddingRight: 5,

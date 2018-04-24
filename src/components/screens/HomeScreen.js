@@ -10,7 +10,7 @@ import {
 import { connect } from "react-redux";
 import { getJobs, getMyJobs } from "../../actions/jobs";
 import { Input, Button, colors } from "../utils";
-import { request } from "../../api";
+import { request, jobs } from "../../api";
 import JobPosting from "../JobPosting";
 
 const mapStateToProps = ({ jobs }) => ({ jobs });
@@ -28,8 +28,12 @@ class HomeScreen extends React.Component {
     });
   };
   openJobPost = jp => {
-    this.props.navigation.navigate("ShowJobPost", { jp });
+    this.props.navigation.navigate("ShowJobPost", {
+      jp,
+      applyForJob: this.applyForJob
+    });
   };
+  applyForJob = id => jobs.applyForJob(id).then(() => this.props.getJobs());
   postJob = () => {
     this.props.navigation.navigate("JobPost");
   };

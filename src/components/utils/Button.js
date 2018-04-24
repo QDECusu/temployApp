@@ -4,8 +4,12 @@ import colors from "./colors";
 
 export default props => (
   <TouchableOpacity
-    onPress={props.onPress}
-    style={[styles.button, props.style]}
+    onPress={props.disabled ? () => {} : props.onPress}
+    style={[
+      styles.button,
+      { backgroundColor: props.disabled ? colors.disabled : colors.primary },
+      props.style
+    ]}
   >
     <Text style={styles.text}>{props.label}</Text>
   </TouchableOpacity>
@@ -16,7 +20,6 @@ const styles = StyleSheet.create({
     height: 40,
     width: 100,
     margin: 3,
-    backgroundColor: colors.primary,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10
