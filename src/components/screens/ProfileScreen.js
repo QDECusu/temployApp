@@ -50,7 +50,6 @@ class Profile extends Component {
             rounded
             source={profile.image != null ? { uri: profile.image } : null}
             title={initials}
-            //onPress={() => {}}
             activeOpacity={0.7}
             containerStyle={{ backgroundColor: colors.primary, margin: 20 }}
           />
@@ -59,6 +58,7 @@ class Profile extends Component {
           </Text>
           <Text style={style}>{profile.username}</Text>
           <Text style={style}>{profile.email}</Text>
+          <Text style={style}>{profile.zipcode}</Text>
           <Text style={style}>{profile.short_description}</Text>
           <View style={{ alignItems: "center" }}>
             <Button label="Edit Profile" onPress={this.editProfile} />
@@ -76,7 +76,14 @@ class Profile extends Component {
             if (jp === null) {
               return <Text style={style}>You have not posted any jobs.</Text>;
             }
-            return <JobPosting own key={jp.company_name} jobPosting={jp} />;
+            return (
+              <JobPosting
+                own
+                key={jp.company_name}
+                jobPosting={jp}
+                onPress={this.editJobPost}
+              />
+            );
           })}
         </View>
       </ScrollView>
