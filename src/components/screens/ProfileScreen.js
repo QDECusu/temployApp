@@ -78,7 +78,6 @@ class Profile extends Component {
             myJobs.map(jp => {
               return (
                 <JobPosting
-                  own
                   key={jp.company_name}
                   jobPosting={jp}
                   onPress={this.editJobPost}

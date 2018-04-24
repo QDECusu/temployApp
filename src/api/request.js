@@ -30,7 +30,10 @@ class Request {
       });
       const body = options.body ? JSON.stringify(options.body) : null;
       const optionsWithAuth = { ...options, headers, body };
-      const blob = await fetch(`${BASE_URL}/${route}/`, optionsWithAuth);
+      const blob = await fetch(
+        `${BASE_URL}/${route}${route.includes("search") ? "" : "/"}`,
+        optionsWithAuth
+      );
       const response = await blob.json();
       return response;
     } catch (e) {
