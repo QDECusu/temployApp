@@ -16,7 +16,10 @@ import {
 } from "./screens";
 
 const Profile = StackNavigator({
-  Profile: { screen: ProfileScreen, navigationOptions: { title: "Profile" } },
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: { title: "Profile" }
+  },
   EditJobPost: {
     screen: EditJobPost,
     navigationOptions: { title: "Edit Job Post" }
@@ -41,7 +44,7 @@ const Home = StackNavigator({
   JobPost: { screen: JobPost, navigationOptions: { title: "Post A Job" } },
   OthersProfile: {
     screen: OthersProfile,
-    navigationOptions: { title: "Profile" }
+    navigationOptions: { title: "Employer's Profile" }
   }
 });
 

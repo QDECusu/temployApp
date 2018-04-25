@@ -14,7 +14,7 @@ import { Input, Button, colors } from "../utils";
 import { request, jobs } from "../../api";
 import { getMyJobs } from "../../actions/jobs";
 import JobPosting from "../JobPosting";
-import { Divider, Avatar } from "react-native-elements";
+import { Divider } from "react-native-elements";
 import NamedTextField from "../NamedTextField";
 
 const mapStateToProps = ({ profile, myJobs }) => ({ profile, myJobs });

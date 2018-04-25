@@ -16,6 +16,20 @@ class JobPosting extends Component {
       job_schedule,
       has_applied
     } = this.props.jobPosting;
+    const styledNumber =
+      "(" +
+      job_phone[0] +
+      job_phone[1] +
+      job_phone[2] +
+      ")" +
+      job_phone[3] +
+      job_phone[4] +
+      job_phone[5] +
+      "-" +
+      job_phone[6] +
+      job_phone[7] +
+      job_phone[8] +
+      job_phone[9];
     return (
       <TouchableOpacity onPress={this.props.onPress}>
         <Card
@@ -47,7 +61,7 @@ class JobPosting extends Component {
             <View stlye={{ paddingLeft: 12 }}>
               <Text> {company_name}</Text>
               <Text> {job_position}</Text>
-              <Text> {job_phone}</Text>
+              <Text> {styledNumber}</Text>
               <Text> {job_email}</Text>
             </View>
           </View>
