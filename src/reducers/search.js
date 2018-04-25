@@ -1,7 +1,7 @@
 import { actionNames } from "../actions";
 
 export default (
-  state = { AvailabilityListing: [], JobListing: [], User: [] },
+  state = { AvailabilityListing: [], JobListing: [], Profile: [] },
   action
 ) => {
   switch (action.type) {

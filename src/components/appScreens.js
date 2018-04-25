@@ -12,7 +12,8 @@ import {
   EditJobPost,
   EditProfile,
   ShowJobPost,
-  Availability
+  Availability,
+  Applications
 } from "./screens";
 
 const Profile = StackNavigator({
@@ -31,11 +32,24 @@ const Profile = StackNavigator({
   Availability: {
     screen: Availability,
     navigationOptions: { title: "Availability" }
+  },
+  Applications: {
+    screen: Applications,
+    navigationOptions: { title: "Applications" }
+  },
+  OthersProfile: {
+    screen: OthersProfile,
+    navigationOptions: { title: "Employer's Profile" }
   }
 });
 
 const Search = StackNavigator({
-  Search: { screen: SearchScreen, navigationOptions: { title: "Search" } }
+  Search: { screen: SearchScreen, navigationOptions: { title: "Search" } },
+  ShowJobPost: { screen: ShowJobPost },
+  OthersProfile: {
+    screen: OthersProfile,
+    navigationOptions: { title: "Employer's Profile" }
+  }
 });
 
 const Home = StackNavigator({

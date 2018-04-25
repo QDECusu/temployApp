@@ -31,7 +31,7 @@ class Request {
       const body = options.body ? JSON.stringify(options.body) : null;
       const optionsWithAuth = { ...options, headers, body };
       const blob = await fetch(
-        `${BASE_URL}/${route}${route.includes("search") ? "" : "/"}`,
+        `${BASE_URL}/${route}${options.noSlash === true ? "" : "/"}`,
         optionsWithAuth
       );
       const response = await blob.json();

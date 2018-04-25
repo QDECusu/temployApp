@@ -46,6 +46,7 @@ class Profile extends Component {
             marginBottom: 30
           }}
         >
+          <Button label="Logout" onPress={this.logout} />
           <Avatar
             xlarge
             rounded
@@ -73,7 +74,6 @@ class Profile extends Component {
               </TouchableOpacity>
             )}
             <Button label="Edit Profile" onPress={this.editProfile} />
-            <Button label="Logout" onPress={this.logout} />
             <Divider
               style={{
                 margin: 20,
@@ -91,7 +91,14 @@ class Profile extends Component {
                 <JobPosting
                   key={jp.company_name}
                   jobPosting={jp}
-                  onPress={() => this.editJobPost(jp)}
+                  onPress={() => {}}
+                  onEdit={() => this.editJobPost(jp)}
+                  viewApps={() =>
+                    this.props.navigation.navigate("Applications", {
+                      jobId: jp.id
+                    })
+                  }
+                  own
                 />
               );
             })

@@ -7,3 +7,4 @@ export { default as EditJobPost } from "./EditJobPost";
 export { default as EditProfile } from "./EditProfile";
 export { default as ShowJobPost } from "./ShowJobPost";
 export { default as Availability } from "./Availability";
+export { default as Applications } from "./Applications";

@@ -87,7 +87,9 @@ class ShowJobPost extends Component {
             />
           </View>
           <Text style={styles.largeTextField}>
-            <Text style={{ fontWeight: "bold" }}>Job Description:</Text>{" "}
+            <Text multiline={true} style={{ fontWeight: "bold" }}>
+              Job Description:
+            </Text>{" "}
             {jp.job_description}
           </Text>
           <View style={{ alignItems: "center" }}>
@@ -99,7 +101,7 @@ class ShowJobPost extends Component {
               }}
             />
           </View>
-          <Text style={styles.textField}>
+          <Text multiline={true} style={styles.mediumTextField}>
             <Text style={{ fontWeight: "bold" }}>Schedule:</Text>{" "}
             {jp.job_schedule}
           </Text>
@@ -112,7 +114,7 @@ class ShowJobPost extends Component {
               }}
             />
           </View>
-          <Text style={styles.largeTextField}>
+          <Text style={styles.mediumTextField}>
             <Text style={{ fontWeight: "bold" }}>Contact Info:</Text> {"\n"}
             {styledNumber} {"\n"}
             {jp.job_email}
@@ -150,6 +152,19 @@ const styles = StyleSheet.create({
     height: 50,
     width: 300,
     margin: 5,
+    fontSize: 18
+  },
+  mediumTextField: {
+    textAlignVertical: "top",
+    backgroundColor: "white",
+    margin: 5,
+    padding: 10,
+    borderRadius: 5,
+    borderColor: colors.primaryDeep,
+    borderStyle: "solid",
+    borderWidth: 1,
+    height: 100,
+    width: 300,
     fontSize: 18
   },
   largeTextField: {

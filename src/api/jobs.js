@@ -16,6 +16,8 @@ class Jobs {
   getAvailabilityPost = () => request.get("listUserAvailabilityPosts");
   editAvailabilityPost = (id, options) =>
     request.patch(`AvailabilityPosts/${id}`, { body: options });
+  respondToApplication = (id, accepted) =>
+    request.patch(`applications/${id}`, { body: { accepted } });
 }
 
 export default new Jobs();
