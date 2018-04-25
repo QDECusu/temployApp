@@ -1,4 +1,4 @@
-import { AsyncStorage } from "react-native";
+import { AsyncStorage, Alert } from "react-native";
 import BASE_URL from "./url";
 
 class Request {
@@ -50,6 +50,7 @@ class Request {
       AsyncStorage.setItem("token", token);
       return true;
     } else {
+      Alert.alert("Error", "Username or password is wrong");
       return false;
     }
   };

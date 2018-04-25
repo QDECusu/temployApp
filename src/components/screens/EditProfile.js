@@ -79,8 +79,8 @@ class EditProfile extends Component {
         first_name: firstName,
         last_name: lastName
       },
-      short_descriptions: shortDescription,
-      // skills,
+      short_description: shortDescription,
+      skills,
       zipcode
     });
   };

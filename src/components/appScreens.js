@@ -39,7 +39,7 @@ const Profile = StackNavigator({
   },
   OthersProfile: {
     screen: OthersProfile,
-    navigationOptions: { title: "Employer's Profile" }
+    navigationOptions: { title: "Profile" }
   }
 });
 
@@ -48,7 +48,7 @@ const Search = StackNavigator({
   ShowJobPost: { screen: ShowJobPost },
   OthersProfile: {
     screen: OthersProfile,
-    navigationOptions: { title: "Employer's Profile" }
+    navigationOptions: { title: "Profile" }
   }
 });
 
@@ -58,7 +58,7 @@ const Home = StackNavigator({
   JobPost: { screen: JobPost, navigationOptions: { title: "Post A Job" } },
   OthersProfile: {
     screen: OthersProfile,
-    navigationOptions: { title: "Employer's Profile" }
+    navigationOptions: { title: "Profile" }
   }
 });
 

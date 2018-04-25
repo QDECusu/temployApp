@@ -49,7 +49,6 @@ class SearchScreen extends React.Component {
     });
   };
   render() {
-    console.log(this.props.search);
     const { Profile, JobListing } = this.props.search;
     let textColor = "black";
     return (

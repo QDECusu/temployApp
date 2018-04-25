@@ -29,6 +29,7 @@ class OthersProfile extends Component {
       .then(() => this.getOtherProfile());
   render() {
     const { openProfile } = this.props;
+    console.log(openProfile);
     if (openProfile === null) {
       return null;
     }
@@ -67,7 +68,9 @@ class OthersProfile extends Component {
           </Text>
           <Text style={style}>{openProfile.user.username}</Text>
           <Text style={style}>{openProfile.user.email}</Text>
-          <Text style={style}>{openProfile.user.short_description}</Text>
+          <Text style={style}>{openProfile.short_description}</Text>
+          <Text style={style}>{openProfile.skills}</Text>
+          <Text style={style}>{openProfile.zipcode}</Text>
         </View>
       </ScrollView>
     );
