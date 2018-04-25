@@ -18,7 +18,7 @@ class Request {
         headers
       });
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
   };
   _request = async (route, options = {}, auth = true) => {
@@ -37,7 +37,7 @@ class Request {
       const response = await blob.json();
       return response;
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
   };
   login = async options => {
@@ -72,6 +72,8 @@ class Request {
     this._request(route, { ...options, method: "post" });
   patch = (route, options) =>
     this._request(route, { ...options, method: "patch" });
+  delete = (route, options) =>
+    this._request(route, { ...options, method: "delete" });
 }
 
 export default new Request();

@@ -22,11 +22,6 @@ class HomeScreen extends React.Component {
   componentWillMount() {
     this.props.getJobs();
   }
-  openOthersProfile = jp => {
-    this.props.navigation.navigate("OthersProfile", {
-      userId: jp.user
-    });
-  };
   openJobPost = jp => {
     this.props.navigation.navigate("ShowJobPost", {
       jp,
@@ -37,7 +32,6 @@ class HomeScreen extends React.Component {
   postJob = () => {
     this.props.navigation.navigate("JobPost");
   };
-
   render() {
     const { jobs } = this.props;
     return (

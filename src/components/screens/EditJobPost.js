@@ -11,7 +11,7 @@ import {
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Input, Button, colors } from "../utils";
-import { request } from "../../api";
+import { request, jobs } from "../../api";
 import { getMyJobs } from "../../actions/jobs";
 import JobPosting from "../JobPosting";
 import { Divider, Avatar } from "react-native-elements";
@@ -26,6 +26,25 @@ class EditJobPost extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.jp.company_name
   });
+  constructor(props) {
+    super(props);
+    const {
+      company_name,
+      job_description,
+      job_phone,
+      job_email,
+      job_schedule,
+      job_position
+    } = props.navigation.state.params.jp;
+    this.state = {
+      company_name,
+      job_description,
+      job_phone,
+      job_email,
+      job_schedule,
+      job_position
+    };
+  }
   componentWillMount() {
     this.props.getMyJobs();
   }
@@ -35,20 +54,20 @@ class EditJobPost extends Component {
       job_position,
       job_phone,
       job_email,
-      short_descriptions,
+      job_description,
       job_schedule
-    } = this.props.navigation.state.params;
-    return jp.editJobs(this.props.navigation.state.params, {
-      body: {
+    } = this.state;
+    this.props.navigation.goBack();
+    return jobs
+      .editJob(this.props.navigation.state.params.jp.id, {
         company_name,
         job_description,
         job_position,
         job_phone,
         job_email,
         job_schedule
-      }
-    });
-    this.props.navigation.goBack();
+      })
+      .then(() => this.props.getMyJobs());
   };
 
   cancelChanges = () => {
@@ -57,15 +76,16 @@ class EditJobPost extends Component {
 
   deletePost = () => {
     this.props.navigation.goBack();
+    return jobs
+      .deletePost(this.props.navigation.state.params.jp.id)
+      .then(() => this.props.getMyJobs());
   };
   onChange = (val, name) => {
     this.setState({ [name]: val });
   };
 
   render() {
-    const { profile, myJobs } = this.props;
-    const { jp } = this.props.navigation.state.params;
-    console.log(jp);
+    const jp = this.state;
     return (
       <KeyboardAvoidingView
         behavior="padding"
