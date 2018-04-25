@@ -7,9 +7,11 @@ import { jobs } from "../../api";
 import JobPosting from "../JobPosting";
 import { Divider } from "react-native-elements";
 
+const mapStateToProps = ({ profile }) => ({ profile });
+
 const mapDispatchToProps = { getJobs };
 
-@connect(null, mapDispatchToProps)
+@connect(mapStateToProps, mapDispatchToProps)
 class ShowJobPost extends Component {
   static navigationOptions = ({ navigation }) => {
     const { jp, applyForJob } = navigation.state.params;
@@ -31,6 +33,12 @@ class ShowJobPost extends Component {
     this.props.navigation.navigate("OthersProfile", {
       userId: jp.user
     });
+  };
+  deletePost = () => {
+    this.props.navigation.goBack();
+    return jobs
+      .deletePost(this.props.navigation.state.params.jp.id)
+      .then(() => this.props.getJobs());
   };
   render() {
     const { jp } = this.props.navigation.state.params;
@@ -119,6 +127,13 @@ class ShowJobPost extends Component {
             />
           </View>
         </View>
+        {this.props.profile.is_mod && (
+          <Button
+            style={{ backgroundColor: "rgb(139, 0, 0)" }}
+            label="Delete Post"
+            onPress={this.deletePost}
+          />
+        )}
       </ScrollView>
     );
   }
