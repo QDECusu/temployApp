@@ -11,7 +11,8 @@ import {
   OthersProfile,
   EditJobPost,
   EditProfile,
-  ShowJobPost
+  ShowJobPost,
+  Availability
 } from "./screens";
 
 const Profile = StackNavigator({
@@ -23,6 +24,10 @@ const Profile = StackNavigator({
   EditProfile: {
     screen: EditProfile,
     navigationOptions: { title: "Edit Profile" }
+  },
+  Availability: {
+    screen: Availability,
+    navigationOptions: { title: "Availability" }
   }
 });
 

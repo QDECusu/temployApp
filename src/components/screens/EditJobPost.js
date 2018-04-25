@@ -15,10 +15,7 @@ import { request, jobs } from "../../api";
 import { getMyJobs } from "../../actions/jobs";
 import JobPosting from "../JobPosting";
 import { Divider, Avatar } from "react-native-elements";
-<<<<<<< HEAD
-=======
 import NamedTextField from "../NamedTextField";
->>>>>>> 7895bcb13174d8e94cb6d1d5e6924f0b65766e60
 
 const mapStateToProps = ({ profile, myJobs }) => ({ profile, myJobs });
 
@@ -27,10 +24,6 @@ const mapDispatchToProps = { getMyJobs };
 @connect(mapStateToProps, mapDispatchToProps)
 class EditJobPost extends Component {
   static navigationOptions = ({ navigation }) => ({
-<<<<<<< HEAD
-    title: navigation.state.params.title
-  });
-=======
     title: navigation.state.params.jp.company_name
   });
   constructor(props) {
@@ -52,7 +45,6 @@ class EditJobPost extends Component {
       job_position
     };
   }
->>>>>>> 7895bcb13174d8e94cb6d1d5e6924f0b65766e60
   componentWillMount() {
     this.props.getMyJobs();
   }
@@ -78,8 +70,6 @@ class EditJobPost extends Component {
       .then(() => this.props.getMyJobs());
   };
 
-<<<<<<< HEAD
-=======
   cancelChanges = () => {
     this.props.navigation.goBack();
   };
@@ -94,44 +84,9 @@ class EditJobPost extends Component {
     this.setState({ [name]: val });
   };
 
->>>>>>> 7895bcb13174d8e94cb6d1d5e6924f0b65766e60
   render() {
     const jp = this.state;
     return (
-<<<<<<< HEAD
-      <ScrollView style={{ backgroundColor: "skyblue" }}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "skyblue",
-            marginBottom: 30
-          }}
-        >
-          <View style={{ alignItems: "center" }}>
-            <Button label="Edit Job Post" onPress={this.editJobPost} />
-            <Button label="Save" onPress={this.logout} />
-            <Divider
-              style={{
-                margin: 20,
-                width: 300,
-                backgroundColor: colors.primaryDeep
-              }}
-            />
-          </View>
-          <Text style={style}>MY JOB POSTS</Text>
-          {myJobs.map(jp => (
-            <JobPosting
-              own
-              key={jp.company_name}
-              jobPosting={jp}
-              onPress={this.editJobPost}
-            />
-          ))}
-        </View>
-      </ScrollView>
-=======
       <KeyboardAvoidingView
         behavior="padding"
         style={{
@@ -244,20 +199,10 @@ class EditJobPost extends Component {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
->>>>>>> 7895bcb13174d8e94cb6d1d5e6924f0b65766e60
     );
   }
 }
 
-<<<<<<< HEAD
-const style = {
-  margin: 10,
-  fontSize: 20,
-  color: "white",
-  alignItems: "center",
-  justifyContent: "center"
-};
-=======
 const styles = StyleSheet.create({
   inputField: {
     backgroundColor: "white",
@@ -294,6 +239,5 @@ const styles = StyleSheet.create({
     width: 300
   }
 });
->>>>>>> 7895bcb13174d8e94cb6d1d5e6924f0b65766e60
 
 export default EditJobPost;

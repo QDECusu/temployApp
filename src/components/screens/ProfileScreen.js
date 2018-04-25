@@ -27,6 +27,10 @@ class Profile extends Component {
     request.logout();
     this.props.navigation.navigate("Authentication");
   };
+  availability = () => {
+    this.props.navigation.navigate("Availability");
+  };
+
   render() {
     const { profile, myJobs } = this.props;
     const initials = profile.first_name[0] + profile.last_name[0];
@@ -60,6 +64,7 @@ class Profile extends Component {
           <Text style={style}>{profile.short_description}</Text>
           <View style={{ alignItems: "center" }}>
             <Button label="Edit Profile" onPress={this.editProfile} />
+            <Button label="Post Availability" onPress={this.availability} />
             <Button label="Logout" onPress={this.logout} />
             <Divider
               style={{
