@@ -8,55 +8,51 @@ import {
   StyleSheet
 } from "react-native";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
-import { getMyJobs } from "../../actions/jobs";
 import { Input, Button, colors } from "../utils";
 import NamedTextField from "../NamedTextField";
 import { jobs as jobRequests } from "../../api";
+import { getMyAvailabilityListing } from "../../actions/jobs";
 
-const mapDispatchToProps = { getMyJobs };
+const mapStateToProps = ({ profile }) => ({
+  availability: profile.availability
+});
 
-/*
-returns 
-descripition,
-schedule,
-post_date
-*/
+const mapDispatchToProps = { getMyAvailabilityListing };
 
-@connect(null, mapDispatchToProps)
+@connect(mapStateToProps, mapDispatchToProps)
 class Availability extends Component {
-  state = {
-    company_name: "",
-    job_position: "",
-    job_phone: "",
-    job_email: "",
-    job_description: "",
-    job_schedule: ""
-  };
+  static navigationOptions = ({ navigation }) => ({
+    title: "Availability listing"
+  });
+  constructor(props) {
+    super(props);
+    const { availability } = props;
+    this.state = {
+      description: availability ? availability.description : "",
+      schedule: availability ? availability.schedule : ""
+    };
+  }
   onChange = (text, name) => {
     this.setState({ [name]: text });
   };
   submit = () => {
-    const {
-      company_name,
-      job_description,
-      job_email,
-      job_phone,
-      job_position,
-      job_schedule
-    } = this.state;
-    jobRequests
-      .postJob({
-        company_name,
-        job_description,
-        job_phone,
-        job_email,
-        job_position,
-        job_schedule
-      })
-      .then(() => this.props.getMyJobs());
+    const { description, schedule } = this.state;
     this.props.navigation.goBack();
+    if (this.props.availability === null) {
+      return jobRequests
+        .addAvailabilityPost({ description, schedule })
+        .then(() => this.props.getMyAvailabilityListing());
+    } else {
+      return jobRequests
+        .editAvailabilityPost(this.props.availability.id, {
+          description,
+          schedule
+        })
+        .then(() => this.props.getMyAvailabilityListing());
+    }
   };
   render() {
+    const { description, schedule } = this.state;
     return (
       <KeyboardAvoidingView
         behavior="padding"
@@ -70,9 +66,17 @@ class Availability extends Component {
         <ScrollView>
           <View style={{ marginBottom: 100, marginLeft: 25, marginRight: 25 }}>
             <NamedTextField
-              name="job_schedule"
+              name="description"
               onChange={this.onChange}
-              value={this.state.job_schedule}
+              value={description}
+              multiline={true}
+              placeholder="Description"
+              style={styles.largeInputField}
+            />
+            <NamedTextField
+              name="schedule"
+              onChange={this.onChange}
+              value={schedule}
               placeholder="Schedule"
               style={styles.inputField}
             />
@@ -93,14 +97,6 @@ class Availability extends Component {
                 textMonthFontSize: 16,
                 textDayHeaderFontSize: 16
               }}
-            />
-            <NamedTextField
-              name="job_description"
-              onChange={this.onChange}
-              value={this.state.job_description}
-              multiline={true}
-              placeholder="Notes"
-              style={styles.largeInputField}
             />
             <View style={{ alignItems: "center" }}>
               <Button label="Submit" onPress={this.submit} />

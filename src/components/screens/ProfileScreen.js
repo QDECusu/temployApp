@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Input, Button, colors } from "../utils";
 import { request } from "../../api";
-import { getMyJobs } from "../../actions/jobs";
+import { getMyJobs, getMyAvailabilityListing } from "../../actions/jobs";
 import JobPosting from "../JobPosting";
 import { Divider, Avatar } from "react-native-elements";
 
 const mapStateToProps = ({ profile, myJobs }) => ({ profile, myJobs });
 
-const mapDispatchToProps = { getMyJobs };
+const mapDispatchToProps = { getMyJobs, getMyAvailabilityListing };
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Profile extends Component {
   componentWillMount() {
     this.props.getMyJobs();
+    this.props.getMyAvailabilityListing();
   }
   editJobPost = jp => {
     this.props.navigation.navigate("EditJobPost", { jp });
@@ -63,8 +64,15 @@ class Profile extends Component {
           </Text>
           <Text style={style}>{profile.short_description}</Text>
           <View style={{ alignItems: "center" }}>
+            {profile.availability === null ? (
+              <Button label="Availability" onPress={this.availability} />
+            ) : (
+              <TouchableOpacity onPress={this.availability}>
+                <Text style={style}>{profile.availability.description}</Text>
+                <Text style={style}>{profile.availability.schedule}</Text>
+              </TouchableOpacity>
+            )}
             <Button label="Edit Profile" onPress={this.editProfile} />
-            <Button label="Post Availability" onPress={this.availability} />
             <Button label="Logout" onPress={this.logout} />
             <Divider
               style={{
@@ -75,7 +83,7 @@ class Profile extends Component {
             />
           </View>
           <Text style={style}>MY JOB POSTS</Text>
-          {myJobs === [] ? (
+          {myJobs.length === 0 ? (
             <Text style={style}>You have not posted any jobs.</Text>
           ) : (
             myJobs.map(jp => {

@@ -10,6 +10,12 @@ class Jobs {
   getMyPosts = () => request.get("listUserJobPosts");
   applyForJob = id => request.post("applications", { body: { job_post: id } });
   deletePost = id => request.delete(`JobPosts/${id}`);
+  addAvailabilityPost = options => {
+    return request.post("AvailabilityPosts", { body: options });
+  };
+  getAvailabilityPost = () => request.get("listUserAvailabilityPosts");
+  editAvailabilityPost = (id, options) =>
+    request.patch(`AvailabilityPosts/${id}`, { body: options });
 }
 
 export default new Jobs();
