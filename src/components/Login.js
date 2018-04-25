@@ -5,6 +5,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Keyboard,
+  ScrollView,
   Image,
 } from "react-native";
 import { connect } from "react-redux";
@@ -69,8 +70,7 @@ class Login extends React.Component {
     const { mode } = this.state;
     return (
       
-      <View style={{
-        flex: 1}}>
+      <View style={{flex: 1}}>
       <Image
         style={{
           backgroundColor: '#ccc',
@@ -100,17 +100,19 @@ class Login extends React.Component {
           alignItems: "center",
         }}
       >
-        
+      <ScrollView>
         <View
           style={{
             justifyContent: "center",
             alignItems: "center",
+            marginLeft: 25, marginRight: 25,
           }}
         >
           {mode === "Login" && (
             <View style={{
               justifyContent: "center",
               alignItems: "center",
+              marginTop: 110
             }}>
               <Text style={{ color: "white", fontSize: 30 }}>Welcome To</Text>
               <Text
@@ -183,6 +185,7 @@ class Login extends React.Component {
             </View>
           )}
         </View>
+      </ScrollView>
       </KeyboardAvoidingView>
       </View>
       
@@ -194,7 +197,7 @@ const styles = StyleSheet.create({
   inputField: {
     backgroundColor: "white",
     margin: 5,
-    padding: 15,
+    padding: 10,
     borderRadius: 5,
     borderColor: colors.primaryDeep,
     borderStyle: "solid",

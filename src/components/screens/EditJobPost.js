@@ -1,12 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView,
+  Keyboard,
+  StyleSheet
+} from "react-native";
+import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Input, Button, colors } from "../utils";
-import { request } from "../../api";
+import { request, jobs } from "../../api";
 import { getMyJobs } from "../../actions/jobs";
 import JobPosting from "../JobPosting";
 import { Divider, Avatar } from "react-native-elements";
+<<<<<<< HEAD
+=======
+import NamedTextField from "../NamedTextField";
+>>>>>>> 7895bcb13174d8e94cb6d1d5e6924f0b65766e60
 
 const mapStateToProps = ({ profile, myJobs }) => ({ profile, myJobs });
 
@@ -15,15 +27,78 @@ const mapDispatchToProps = { getMyJobs };
 @connect(mapStateToProps, mapDispatchToProps)
 class EditJobPost extends Component {
   static navigationOptions = ({ navigation }) => ({
+<<<<<<< HEAD
     title: navigation.state.params.title
   });
+=======
+    title: navigation.state.params.jp.company_name
+  });
+  constructor(props) {
+    super(props);
+    const {
+      company_name,
+      job_description,
+      job_phone,
+      job_email,
+      job_schedule,
+      job_position
+    } = props.navigation.state.params.jp;
+    this.state = {
+      company_name,
+      job_description,
+      job_phone,
+      job_email,
+      job_schedule,
+      job_position
+    };
+  }
+>>>>>>> 7895bcb13174d8e94cb6d1d5e6924f0b65766e60
   componentWillMount() {
     this.props.getMyJobs();
   }
+  submitChanges = () => {
+    const {
+      company_name,
+      job_position,
+      job_phone,
+      job_email,
+      job_description,
+      job_schedule
+    } = this.state;
+    this.props.navigation.goBack();
+    return jobs
+      .editJob(this.props.navigation.state.params.jp.id, {
+        company_name,
+        job_description,
+        job_position,
+        job_phone,
+        job_email,
+        job_schedule
+      })
+      .then(() => this.props.getMyJobs());
+  };
 
+<<<<<<< HEAD
+=======
+  cancelChanges = () => {
+    this.props.navigation.goBack();
+  };
+
+  deletePost = () => {
+    this.props.navigation.goBack();
+    return jobs
+      .deletePost(this.props.navigation.state.params.jp.id)
+      .then(() => this.props.getMyJobs());
+  };
+  onChange = (val, name) => {
+    this.setState({ [name]: val });
+  };
+
+>>>>>>> 7895bcb13174d8e94cb6d1d5e6924f0b65766e60
   render() {
-    const { profile, myJobs } = this.props;
+    const jp = this.state;
     return (
+<<<<<<< HEAD
       <ScrollView style={{ backgroundColor: "skyblue" }}>
         <View
           style={{
@@ -56,10 +131,125 @@ class EditJobPost extends Component {
           ))}
         </View>
       </ScrollView>
+=======
+      <KeyboardAvoidingView
+        behavior="padding"
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "skyblue"
+        }}
+      >
+        <ScrollView>
+          <View style={{ marginBottom: 10, marginLeft: 25, marginRight: 25 }}>
+            <NamedTextField
+              name="company_name"
+              onChange={this.onChange}
+              value={jp.company_name}
+              placeholder="company name"
+              style={styles.inputField}
+            />
+            <NamedTextField
+              name="job_position"
+              onChange={this.onChange}
+              value={jp.job_position}
+              placeholder="job position"
+              style={styles.inputField}
+            />
+            <NamedTextField
+              name="job_phone"
+              onChange={this.onChange}
+              keyboardType={"numeric"}
+              value={jp.job_phone}
+              placeholder="phone"
+              style={styles.inputField}
+            />
+            <NamedTextField
+              name="job_email"
+              onChange={this.onChange}
+              keyboardType={"email-address"}
+              value={jp.job_email}
+              placeholder="email"
+              style={styles.inputField}
+            />
+            <NamedTextField
+              name="job_description"
+              onChange={this.onChange}
+              value={jp.job_description}
+              multiline={true}
+              placeholder="job description"
+              style={styles.largeInputField}
+            />
+            <NamedTextField
+              name="job_schedule"
+              onChange={this.onChange}
+              value={jp.job_schedule}
+              placeholder="job schedule"
+              style={styles.inputField}
+            />
+            <Calendar
+              style={styles.calanderStyle}
+              minDate={Date()}
+              onDayPress={day => {
+                console.log("selected day", day);
+              }}
+              onDayLongPress={day => {
+                console.log("selected day", day);
+              }}
+              onPressArrowLeft={substractMonth => substractMonth()}
+              onPressArrowRight={addMonth => addMonth()}
+              theme={{
+                textMonthFontWeight: "bold",
+                textDayFontSize: 16,
+                textMonthFontSize: 16,
+                textDayHeaderFontSize: 16
+              }}
+            />
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              <Button label="Cancel" onPress={this.cancelChanges} />
+              <Button label="Save" onPress={this.submitChanges} />
+            </View>
+            <View style={{ alignItems: "center" }}>
+              <Divider
+                style={{
+                  marginLeft: 5,
+                  margin: 20,
+                  width: 300,
+                  backgroundColor: colors.primaryDeep
+                }}
+              />
+            </View>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 75
+              }}
+            >
+              <Button
+                style={{ backgroundColor: "rgb(139, 0, 0)" }}
+                label="Delete Post"
+                onPress={this.deletePost}
+              />
+            </View>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+>>>>>>> 7895bcb13174d8e94cb6d1d5e6924f0b65766e60
     );
   }
 }
 
+<<<<<<< HEAD
 const style = {
   margin: 10,
   fontSize: 20,
@@ -67,5 +257,43 @@ const style = {
   alignItems: "center",
   justifyContent: "center"
 };
+=======
+const styles = StyleSheet.create({
+  inputField: {
+    backgroundColor: "white",
+    margin: 5,
+    padding: 10,
+    borderRadius: 5,
+    borderColor: colors.primaryDeep,
+    borderStyle: "solid",
+    borderWidth: 1,
+    height: 50,
+    width: 300,
+    fontSize: 18
+  },
+  largeInputField: {
+    textAlignVertical: "top",
+    backgroundColor: "white",
+    margin: 5,
+    padding: 10,
+    borderRadius: 5,
+    borderColor: colors.primaryDeep,
+    borderStyle: "solid",
+    borderWidth: 1,
+    height: 150,
+    width: 300,
+    fontSize: 18
+  },
+  calanderStyle: {
+    margin: 5,
+    padding: 10,
+    borderRadius: 5,
+    borderColor: colors.primaryDeep,
+    borderStyle: "solid",
+    borderWidth: 1,
+    width: 300
+  }
+});
+>>>>>>> 7895bcb13174d8e94cb6d1d5e6924f0b65766e60
 
 export default EditJobPost;

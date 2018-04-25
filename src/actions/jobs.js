@@ -10,4 +10,3 @@ export const getMyJobs = () => async dispatch => {
   const jobs = await jobRequest.getMyPosts();
   dispatch({ type: types.GET_MY_JOBS, payload: { jobs } });
 };
-

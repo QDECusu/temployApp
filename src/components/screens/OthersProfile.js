@@ -34,6 +34,7 @@ class OthersProfile extends Component {
           <Avatar
             xlarge
             rounded
+            source={openProfile.image != null ? { uri: openProfile.image } : null}
             title={initials}
             activeOpacity={0.7}
             containerStyle={{backgroundColor:colors.primary, margin: 20}}

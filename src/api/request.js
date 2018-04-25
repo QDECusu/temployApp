@@ -12,9 +12,13 @@ class Request {
       });
       const body = new FormData();
       body.append(name, form);
-      fetch(`${BASE_URL}/profilePicture/`, { method: "post", body, headers });
+      return fetch(`${BASE_URL}/profilePicture/`, {
+        method: "post",
+        body,
+        headers
+      });
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
   };
   _request = async (route, options = {}, auth = true) => {
@@ -26,11 +30,14 @@ class Request {
       });
       const body = options.body ? JSON.stringify(options.body) : null;
       const optionsWithAuth = { ...options, headers, body };
-      const blob = await fetch(`${BASE_URL}/${route}/`, optionsWithAuth);
+      const blob = await fetch(
+        `${BASE_URL}/${route}${route.includes("search") ? "" : "/"}`,
+        optionsWithAuth
+      );
       const response = await blob.json();
       return response;
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
   };
   login = async options => {
@@ -65,6 +72,8 @@ class Request {
     this._request(route, { ...options, method: "post" });
   patch = (route, options) =>
     this._request(route, { ...options, method: "patch" });
+  delete = (route, options) =>
+    this._request(route, { ...options, method: "delete" });
 }
 
 export default new Request();
