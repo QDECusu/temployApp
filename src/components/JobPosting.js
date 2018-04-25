@@ -33,19 +33,23 @@ class JobPosting extends Component {
       job_phone[8] +
       job_phone[9];
     let color = "white";
+    let textColor = "black";
     if (has_applied) {
       if (has_accepted === null) {
         color = colors.disabled;
       } else if (has_accepted === true) {
-        color = "rgb(0, 170, 0)";
+        color = "rgb(0, 200, 0)";
+        textColor = "white";
       } else if (has_accepted === false) {
-        color = "grey";
+        color = "rgb(200,0,0)";
+        textColor = "white";
       }
     }
     return (
       <TouchableOpacity onPress={this.props.onPress}>
         <Card
           title={company_name}
+          titleStyle={{ color: textColor }}
           containerStyle={{
             width: 325,
             backgroundColor: color
@@ -68,16 +72,16 @@ class JobPosting extends Component {
                   borderRightColor: colors.disabled
                 }}
               >
-                <Text>Company</Text>
-                <Text>Position</Text>
-                <Text>Phone</Text>
-                <Text>Email</Text>
+                <Text style={{ color: textColor }}>Company</Text>
+                <Text style={{ color: textColor }}>Position</Text>
+                <Text style={{ color: textColor }}>Phone</Text>
+                <Text style={{ color: textColor }}>Email</Text>
               </View>
               <View stlye={{ paddingLeft: 12 }}>
-                <Text> {company_name}</Text>
-                <Text> {job_position}</Text>
-                <Text> {styledNumber}</Text>
-                <Text> {job_email}</Text>
+                <Text style={{ color: textColor }}> {company_name}</Text>
+                <Text style={{ color: textColor }}> {job_position}</Text>
+                <Text style={{ color: textColor }}> {styledNumber}</Text>
+                <Text style={{ color: textColor }}> {job_email}</Text>
               </View>
             </View>
             {this.props.own && (

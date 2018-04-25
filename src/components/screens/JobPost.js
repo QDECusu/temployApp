@@ -7,7 +7,6 @@ import {
   ScrollView,
   StyleSheet
 } from "react-native";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { getMyJobs } from "../../actions/jobs";
 import { Input, Button, colors } from "../utils";
 import NamedTextField from "../NamedTextField";
@@ -107,24 +106,6 @@ class JobPost extends Component {
               placeholder="job schedule"
               style={styles.inputField}
             />
-            <Calendar
-              style={styles.calanderStyle}
-              minDate={Date()}
-              onDayPress={day => {
-                console.log("selected day", day);
-              }}
-              onDayLongPress={day => {
-                console.log("selected day", day);
-              }}
-              onPressArrowLeft={substractMonth => substractMonth()}
-              onPressArrowRight={addMonth => addMonth()}
-              theme={{
-                textMonthFontWeight: "bold",
-                textDayFontSize: 16,
-                textMonthFontSize: 16,
-                textDayHeaderFontSize: 16
-              }}
-            />
             <View style={{ alignItems: "center" }}>
               <Button label="Submit" onPress={this.submit} />
             </View>
@@ -160,15 +141,6 @@ const styles = StyleSheet.create({
     height: 150,
     width: 300,
     fontSize: 18
-  },
-  calanderStyle: {
-    margin: 5,
-    padding: 10,
-    borderRadius: 5,
-    borderColor: colors.primaryDeep,
-    borderStyle: "solid",
-    borderWidth: 1,
-    width: 300
   }
 });
 

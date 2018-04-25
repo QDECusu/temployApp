@@ -33,10 +33,13 @@ class Applications extends Component {
       <View>
         {this.state.apps.map(app => {
           let color = "white";
+          let textColor = "black";
           if (app.accepted === true) {
-            color = "green";
+            color = "rgb(0,200,0)";
+            textColor = "white";
           } else if (app.accepted === false) {
-            color = "grey";
+            color = "rgb(200,0,0)";
+            textColor = "white";
           }
           return (
             <TouchableOpacity
@@ -45,6 +48,7 @@ class Applications extends Component {
             >
               <Card
                 title={app.user.username}
+                titleStyle={{ color: textColor }}
                 containerStyle={{
                   width: 325,
                   height: 200,
@@ -53,10 +57,10 @@ class Applications extends Component {
                 }}
               >
                 <View stlye={{ alignItems: "center" }}>
-                  <Text>
+                  <Text style={{ color: textColor }}>
                     {app.user.first_name} {app.user.last_name}
                   </Text>
-                  <Text>{app.user.email}</Text>
+                  <Text style={{ color: textColor }}>{app.user.email}</Text>
                 </View>
                 <View style={{ flex: 1, flexDirection: "row", margin: 10 }}>
                   <Button

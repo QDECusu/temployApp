@@ -51,9 +51,16 @@ class SearchScreen extends React.Component {
   render() {
     console.log(this.props.search);
     const { Profile, JobListing } = this.props.search;
+    let textColor = "black";
     return (
       <TouchableWithoutFeedback>
-        <View style={{ flex: 1, backgroundColor: "white", marginBottom: 20 }}>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "white",
+            marginBottom: 20
+          }}
+        >
           <SearchBar
             lightTheme
             value={this.state.query}
@@ -61,9 +68,20 @@ class SearchScreen extends React.Component {
             showLoading
             onSubmitEditing={this.submit}
             cancelButtonTitle="Cancel"
-            placeholder="Search for Jobs and Employees"
+            placeholder="Search for Profiles and Job Listings"
           />
           <ScrollView style={{ backgroundColor: "white" }}>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "bold",
+                marginLeft: 10,
+                color: textColor
+              }}
+            >
+              {" "}
+              Profiles:
+            </Text>
             {Profile.map(profile => {
               const { user } = profile;
               return (
@@ -85,6 +103,17 @@ class SearchScreen extends React.Component {
                 </TouchableOpacity>
               );
             })}
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "bold",
+                marginLeft: 10,
+                color: textColor
+              }}
+            >
+              {" "}
+              Job Listings:
+            </Text>
             {JobListing.map(jl => {
               return (
                 <JobPosting

@@ -46,7 +46,6 @@ class Profile extends Component {
             marginBottom: 30
           }}
         >
-          <Button label="Logout" onPress={this.logout} />
           <Avatar
             xlarge
             rounded
@@ -68,12 +67,28 @@ class Profile extends Component {
             {profile.availability === null ? (
               <Button label="Availability" onPress={this.availability} />
             ) : (
-              <TouchableOpacity onPress={this.availability}>
-                <Text style={style}>{profile.availability.description}</Text>
-                <Text style={style}>{profile.availability.schedule}</Text>
+              <TouchableOpacity
+                onPress={this.availability}
+                style={{
+                  margin: 5,
+                  backgroundColor: "white",
+                  alignItems: "center",
+                  borderRadius: 10,
+                  borderStyle: "solid",
+                  borderWidth: 1,
+                  borderColor: colors.primaryDeep
+                }}
+              >
+                <Text style={availabilityStyle}>
+                  {profile.availability.schedule}
+                </Text>
+                <Text style={availabilityStyle}>
+                  {profile.availability.description}
+                </Text>
               </TouchableOpacity>
             )}
             <Button label="Edit Profile" onPress={this.editProfile} />
+            <Button label="Logout" onPress={this.logout} />
             <Divider
               style={{
                 margin: 20,
@@ -113,6 +128,14 @@ const style = {
   margin: 10,
   fontSize: 20,
   color: "white",
+  alignItems: "center",
+  justifyContent: "center"
+};
+
+const availabilityStyle = {
+  margin: 10,
+  fontSize: 20,
+  color: "black",
   alignItems: "center",
   justifyContent: "center"
 };
